@@ -7,8 +7,10 @@ from tkinter import messagebox
 
 from tkinter import PhotoImage
 
+main = Tk()
 
-class Homepage:
+# The Login page for the GUI program
+class Loginpage:
     def __init__(self, main_canvas,bg_image_canvas_id):
 
         self.main_canvas = main_canvas
@@ -40,6 +42,7 @@ class Homepage:
         for i in range(4):
             self.inner_frame.rowconfigure(i, weight=1)
 
-main = Tk()
 
-main.mainloop()
+root = Tk()
+root.title("Take Credit")
+root.mainloop()
