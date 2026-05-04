@@ -7,42 +7,31 @@ from tkinter import messagebox
 
 from tkinter import PhotoImage
 
-main = Tk()
-
 # The Login page for the GUI program
 class Loginpage:
-    def __init__(self, main_canvas,bg_image_canvas_id):
+    def __init__(self, parent):
 
-        self.main_canvas = main_canvas
+        self.parent = parent
 
-        self.bg_image_canvas_id =  bg_image_canvas_id
+        self.inner_frame = Frame(parent, bg="Blue", padx=40, pady=100)
 
-        self.canvas_width = main_canvas.winfo_width()
-        self.canvas_height = main_canvas.winfo_height()
+        self.start_button = Button(self.inner_frame, width = 40, bg="White", fg="Black", font=("Helvetica", "24"), )
+        self.start_button.grid(row=1, column=3, pady=10, padx=10, sticky="nsew")
 
-        # If the width and height of an image equates to 1, the size will be changed to the following values below it.
-        if self.canvas_width == 1:
-            self.canvas_width = 1400
-        if self.canvas_height == 1:
-            self.canvas_height == 800
+        self.entry_id = Entry(self.inner_frame, width = 40, bg = "White", fg="Black", font=("Helvetica", "24"), )
+        self.entry_id.grid(row=0, column=2, padx=0, pady=0, sticky="nsew")
 
-
-        self.inner_frame = Frame(main_canvas, bg="Grey", padx=40, pady=100)
-
-        self.center_x = self.canvas_width / 2
-        self.center_y = self.canvas_height / 2
-
-        self.frame_window = main_canvas.create_window(self.center_x, self.center_y, window=self.inner_frame,
-                                                      anchor="center")
-
-        self.inner_frame.columnconfigure(0, weight=1)
-        self.inner_frame.columnconfigure(1, weight=3)
-        self.inner_frame.columnconfigure(2, weight=1)
-
-        for i in range(4):
-            self.inner_frame.rowconfigure(i, weight=1)
+        self.exit_button = Button(self.inner_frame, width = 10, height= 10, bg = "White", fg="Black", font=("Helvetica", "12"), )
+        self.exit_button.grid(row=3, column=3, padx=0, pady=0, sticky="nsew")
 
 
-root = Tk()
-root.title("Take Credit")
-root.mainloop()
+
+
+if __name__ == "__main__":
+
+    root = Tk()
+    root.title("Take Credit")
+    #root.geometry("1920X1080")
+    #root.resizable(False, False)
+    Loginpage(root)
+    root.mainloop()
