@@ -26,10 +26,13 @@ class Loginpage:
         self.my_label.image=self.bg
         self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.entry_id = Entry(parent)
+        self.my_frame = Frame(parent, height=100, width=100, bg="Red")
+        self.my_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+        self.entry_id = Entry(self.my_frame)
         self.entry_id.place(relx = 0.5, rely= 0.5, anchor = CENTER)
 
-        self.button_go = Button(parent, text="START HERE")
+        self.button_go = Button(self.my_frame, text="START HERE")
         self.button_go.place(relx=0.5, rely=0.5, anchor = CENTER)
 
 
