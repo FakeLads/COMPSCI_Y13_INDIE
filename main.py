@@ -2,30 +2,38 @@
 # Imports tkinter features
 from tkinter import *
 
+# Imports PIL Image and Image Tk; helps diplays images in GUI
+from PIL import Image, ImageTk
+
 from tkinter import PhotoImage
 
 root = Tk()
-root.title("Take Credit")
-root.geometry("800x500")
+root.title("Take Credit") #Title of the program window
+root.geometry("1920x1080") # Sets the width and height of the window
 
+# The 'Loginpage' class holds all functions, methods and attributes related to the first opening page
 class Loginpage:
     def __init__(self, parent):
 
-        self.bg = PhotoImage(file="images/login_page_buttons.png")
+        self.bg = Image.open("login_page_NO_buttons.png")
 
-        self.my_canvas = Canvas(root, width=800, height=500)
-        self.my_canvas.pack(fill="both", expand=True)
+        self.resized_image = self.bg.resize((1920, 1080), Image.LANCZOS)
 
-        self.my_canvas.create_image(0,0, image=self.bg, anchor="nw")
+        self.bg = ImageTk.PhotoImage(self.resized_image)
 
-        self.my_canvas.create_text(400,250, text="")
+        self.my_label = Label(parent, image=self.bg)
 
-        self.inner_frame = Frame(root, bg="Black", )
+        self.my_label.image=self.bg
+        self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.label = Label(root, text="Hello, Tkinter!")
-        self.label.pack()
+        self.entry_id = Entry(parent)
+        self.entry_id.place(relx = 0.5, rely= 0.5, anchor = CENTER)
 
-        self.enter_button = Button()
+        self.button_go = Button(parent, text="START HERE")
+        self.button_go.place(relx=0.5, rely=0.5, anchor = CENTER)
+
+
+app = Loginpage(root)
 
 root.mainloop()
 
