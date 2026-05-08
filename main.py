@@ -26,13 +26,13 @@ class Loginpage:
         self.my_label.image=self.bg
         self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.my_frame = Frame(parent, height=100, width=100, bg="Red")
-        self.my_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
+        self.my_frame = Frame(parent, height=300, width=1000, bg="#52005b")
+        self.my_frame.place(x=0, y=0, relx=0.5, rely=0.6, anchor=CENTER)
 
-        self.entry_id = Entry(self.my_frame)
-        self.entry_id.place(relx = 0.5, rely= 0.5, anchor = CENTER)
+        self.entry_id = Entry(self.my_frame, font=("Helvitica", 28))
+        self.entry_id.place(x=50, y=50, anchor = "nw")
 
-        self.button_go = Button(self.my_frame, text="START HERE")
+        self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20))
         self.button_go.place(relx=0.5, rely=0.5, anchor = CENTER)
 
 
@@ -40,31 +40,4 @@ app = Loginpage(root)
 
 root.mainloop()
 
-
-
-
-
-# The Login page for the GUI program
-#class Loginpage:
- #   def __init__(self, parent):
-#
- #       self.parent = parent
-#
- #       self.inner_frame = Frame(parent, bg="Blue", padx=40, pady=100)
-  #      self.inner_frame.pack()
-#
-#
- #       self.start_button = Button(self.inner_frame, width = 40, bg="White", fg="Black", font=("Helvetica", "24"), )
-#        self.start_button.grid(row=1, column=3, pady=10, padx=10, sticky="nsew")
-
- #       self.entry_id = Entry(self.inner_frame, width = 40, bg = "White", fg="Black", font=("Helvetica", "24"), )
-  #      self.entry_id.grid(row=0, column=2, padx=0, pady=0, sticky="nsew")
-#
- #       self.exit_button = Button(self.inner_frame, width = 10, height= 10, bg = "White", fg="Black", font=("Helvetica", "12"), )
-  #      self.exit_button.grid(row=3, column=3, padx=0, pady=0, sticky="nsew")
-#
-#
-#
-#
-#
 
