@@ -2,6 +2,8 @@
 # Imports tkinter features
 from tkinter import *
 
+from tkinter import messagebox, ttk
+
 # Imports PIL Image and Image Tk; helps diplays images in GUI
 from PIL import Image, ImageTk
 
@@ -10,6 +12,7 @@ from tkinter import PhotoImage
 root = Tk()
 root.title("Take Credit") #Title of the program window
 root.geometry("1920x1080") # Sets the width and height of the window
+
 
 # The 'Loginpage' class holds all functions, methods and attributes related to the first opening page
 class Loginpage:
@@ -26,14 +29,21 @@ class Loginpage:
         self.my_label.image=self.bg
         self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.my_frame = Frame(parent, height=300, width=1000, bg="#52005b")
+        self.my_frame = Frame(parent, height=300, width=1000, bg="Red")
         self.my_frame.place(x=0, y=0, relx=0.5, rely=0.6, anchor=CENTER)
 
         self.entry_id = Entry(self.my_frame, font=("Helvitica", 28))
         self.entry_id.place(x=50, y=50, anchor = "nw")
 
+        choices = ['1', '2', '3']
+        self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
+        self.branch_dropdown.place(x=50, y=50, anchor="ne")
+
         self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20))
         self.button_go.place(relx=0.5, rely=0.5, anchor = CENTER)
+
+
+
 
 
 app = Loginpage(root)
