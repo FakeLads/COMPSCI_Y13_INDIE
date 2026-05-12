@@ -26,19 +26,23 @@ def exit_gui():
 class Loginpage:
     def __init__(self, parent):
 
-        def name_collection():
+        def id_collection():
 
             name = self.entry_id.get().strip()
 
+            branch = self.branch_dropdown.get().strip()
+
             if not name:
                 messagebox.showerror("ERROR",
-                                     "Please enter a username")
+                                     "Please enter an I.D")
                 return
 
-            if len(name) > 10:
+            if len(name) > 6:
                 messagebox.showerror("ERROR",
-                                     "Username must be 10 characters or less")
+                                     "Student ID must be 6 characters")
                 return
+
+
 
             else:
                 id_list.append(name)
@@ -64,13 +68,13 @@ class Loginpage:
 
         choices = ['1', '2', '3']
         self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
-        self.branch_dropdown.grid(row=1, column=3, padx= 20, pady=20, columnspan=2)
+        self.branch_dropdown.grid(row=1, column=3, padx=20, pady=20, columnspan=2)
 
-        self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20))
+        self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20), command=id_collection)
         self.button_go.grid(row=2, column=2, pady=20, columnspan=2)
 
-        self.button_exit = Button(parent, text="EXIT", height=2, width=7, font=("Helvitica", 20), command=exit_gui)
-        self.button_exit.place(relx=1, rely=1, x=-20, y=-20, anchor="se")
+        self.button_exit = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20), command=exit_gui)
+        self.button_exit.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
 
 
