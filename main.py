@@ -37,15 +37,25 @@ class Loginpage:
                                      "Please enter an I.D")
                 return
 
-            if len(name) > 6:
-                messagebox.showerror("ERROR",
-                                     "Student ID must be 6 characters")
+            if len(name) > 5:
+                messagebox.showerror("ERROR TOO MUCH CHARACTERS",
+                                     "Student ID must be 5 characters")
                 return
 
+            if len(name) < 5:
+                messagebox.showerror("ERROR: INSUFFICIENT AMOUNT OF CHARACTERS", "Student ID must be 5 characters")
 
+                return
+
+            if not branch:
+                messagebox.showerror("ERROR", "Drop Down Menu Empty")
+                return
 
             else:
                 id_list.append(name)
+                branch_list.append(name)
+                parent.destroy()
+                rankcalculator(root)
 
 
 
@@ -81,6 +91,14 @@ class Loginpage:
 
 
 app = Loginpage(root)
+
+
+class rankcalculator:
+    def __init__(self, parent):
+
+        self.bg_2 = Image.open("")
+
+
 
 root.mainloop()
 
