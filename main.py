@@ -43,8 +43,8 @@ class Loginpage:
                 return
 
             if len(name) < 5:
-                messagebox.showerror("ERROR: INSUFFICIENT AMOUNT OF CHARACTERS", "Student ID must be 5 characters")
-
+                messagebox.showerror("ERROR: INSUFFICIENT AMOUNT OF CHARACTERS",
+                                     "Student ID must be 5 characters")
                 return
 
             if not branch:
@@ -53,9 +53,10 @@ class Loginpage:
 
             else:
                 id_list.append(name)
-                branch_list.append(name)
-                parent.destroy()
-                rankcalculator(root)
+                self.my_frame.destroy()
+                self.my_label.destroy()
+                self.button_exit.destroy()
+                Rankcalculator(root)
 
 
 
@@ -90,15 +91,31 @@ class Loginpage:
 
 
 
-app = Loginpage(root)
-
-
-class rankcalculator:
+class Rankcalculator:
     def __init__(self, parent):
 
-        self.bg_2 = Image.open("")
+        self.main_bg = Image.open("calc.png")
+        self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
+        self.bg = ImageTk.PhotoImage(self.resized_image)
+        self.my_label = Label(parent, image=self.bg)
+
+        self.my_label = Label(parent, image=self.bg)
+        self.my_label.image=self.main_bg
+        self.my_label.place(x=0, y=0, relx=1,rely=1)
+
+        self.inner_frame = Frame(parent, height=400, width=1350, bg="White")
+        self.inner_frame.place(x=0, y=20, relx=0, rely=0, anchor=CENTER)
 
 
+
+
+
+
+
+
+
+
+app = Loginpage(root)
 
 root.mainloop()
 
