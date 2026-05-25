@@ -51,6 +51,10 @@ class Loginpage:
                 messagebox.showerror("ERROR", "Drop Down Menu Empty")
                 return
 
+            if len(branch) > 1:
+                messagebox.showerror("ERROR: TOO MANY CHARACTERS", "Year level should be a single digit")
+                return
+
             else:
                 id_list.append(name)
                 self.my_frame.destroy()
@@ -78,10 +82,10 @@ class Loginpage:
         self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
         self.branch_dropdown.grid(row=1, column=3, padx=20, pady=20, columnspan=2)
 
-        self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20), command=id_collection)
+        self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20), activebackground="#a3a3a3", command=id_collection)
         self.button_go.grid(row=2, column=2, pady=20, columnspan=2)
 
-        self.button_exit = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20), command=exit_gui)
+        self.button_exit = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20), activebackground="#a3a3a3", command=exit_gui)
         self.button_exit.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
 
@@ -100,34 +104,47 @@ class Rankcalculator:
         self.my_label.image=self.bg
         self.my_label.place(x=0, y=0, relwidth=1,relheight=1)
 
+
+
         self.inner_frame = Frame(parent, height=400, width=1350, bg="White")
         self.inner_frame.pack_propagate(False)
         self.inner_frame.place(x=0, y=20, relx=0.5, rely=0.5, anchor=CENTER)
-
-        self.outer_frame = Frame(height=130, width=1300, bg="#52005b")
-        self.outer_frame.pack_propagate(False)
-        self.outer_frame.place(x=0, y=5, relx=0.5, rely=0.96, anchor='s')
-
-        self.done_button = Button(self.outer_frame, text="DONE", height=4, width=20, font=("Helvitica", 20))
-        self.done_button.place(x=10, y=-10, relx=0, rely=0.5, anchor="w")
-
-        self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20))
-        self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
 
         self.small_bg = Image.open("rank.png")
         self.resized_small = self.small_bg.resize((400, 1350), Image.LANCZOS)
         self.small_tk_img = ImageTk.PhotoImage(self.resized_small)
 
-        self.my_small_label = Label(self.inner_frame, image=self.small_tk_img)
-        self.my_small_label.image = self.small_tk_img
-        self.my_small_label.pack()
+        self.cal_label = Label(self.inner_frame, image=self.small_bg)
+        self.cal_label.image = self.small_tk_img
+        self.cal_label.pack()
+
+
+
+        self.outer_frame = Frame(height=130, width=1300, bg="#52005b")
+        self.outer_frame.pack_propagate(False)
+        self.outer_frame.place(x=0, y=5, relx=0.5, rely=0.96, anchor='s')
+
+        self.done_button = Button(self.outer_frame, text="DONE", height=4, width=20, font=("Helvitica", 20), activebackground="#a3a3a3")
+        self.done_button.place(x=10, y=-10, relx=0, rely=0.5, anchor="w")
+
+        self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20), activebackground="#a3a3a3")
+        self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
+
 
 
         self.navi_bar = Frame(parent, height=130, width=1300, bg="White")
         self.navi_bar.pack_propagate(False)
         self.navi_bar.place(x=0, y=5, relx=0.5, rely=0.15, anchor='n')
 
-        self.home_butt = Button(self.navi_bar, text="HOME", height=2, width=20, font=("Helvitica", 20))
+        self.navbar_image = Image.open("fanta_colour.png")
+        self.resized_image = self.navbar_image.resize((130, 1300), Image.LANCZOS)
+        self.bg_3 = ImageTk.PhotoImage(self.resized_image)
+
+        self.second_label = Label(self.navi_bar, image=self.bg_3)
+        self.second_label.image = self.bg_3
+        self.second_label.pack()
+
+        self.home_butt = Button(self.navi_bar, text="HOME", height=4, width=20, font=("Helvitica", 20))
         self.home_butt.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="w")
 
 
