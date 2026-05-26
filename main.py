@@ -110,12 +110,21 @@ class Rankcalculator:
                                   activebackground="#a3a3a3", command=exit_gui)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
-        self.home_button = Button(parent, text="HOME", height=2, width=17, font=("Helvitica", 20),
+        self.home_button = Button(parent, text="Home", height=2, width=17, font=("Helvitica", 20),
                                   activebackground="#a3a3a3")
-        self.home_button.place(x=0, y=0, relx=0.19, rely=0.15, anchor='w')
+        self.home_button.place(x=0, y=0, relx=0.189, rely=0.15, anchor='w')
 
-        #self.
+        self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
+                                activebackground="#a3a3a3")
+        self.rank_calc_button.place(x=0, y=0, relx=0.364, rely=0.15, anchor='w')
 
+        self.information_button = Button(parent, text="Subject Information", height=2, width=17, font=("Helvitica", 20),
+                                         activebackground="#a3a3a3")
+        self.information_button.place(x=0, y=0, relx=0.608, rely=0.15, anchor=CENTER)
+
+        self.help_button = Button(parent, text="Help", height=2, width=17, font=("Helvitica", 20),
+                                         activebackground="#a3a3a3")
+        self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
 
         self.inner_frame = Frame(parent, height=400, width=1350, bg="White")
         self.inner_frame.pack_propagate(False)
