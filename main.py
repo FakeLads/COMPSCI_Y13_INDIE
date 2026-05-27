@@ -17,8 +17,20 @@ id_list = []
 
 branch_list = []
 
-def exit_gui():
-    root.destroy()
+def message_exit():
+
+    response = messagebox.askyesno("CONFIRMATION MESSAGE", "Please Confirm Exit")
+
+    if response:
+        return
+    else:
+        root.destroy()
+
+#def exit_if():
+
+ #   if message_exit()
+  #  root.destroy()
+
 
 
 
@@ -87,7 +99,7 @@ class Loginpage:
         self.button_go.grid(row=2, column=2, pady=20, columnspan=2)
 
         self.button_exit = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3", command=exit_gui)
+                                  activebackground="#a3a3a3", command=message_exit)
         self.button_exit.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
 
@@ -96,6 +108,20 @@ class Loginpage:
 
 class Rankcalculator:
     def __init__(self, parent):
+
+        def home_back():
+
+            self.home_button.destroy()
+            self.rank_calc_button.destroy()
+            self.information_button.destroy()
+            self.help_button.destroy()
+            self.my_label.destroy()
+            self.exit_button.destroy()
+            self.inner_frame.destroy()
+            self.outer_frame.destroy()
+            self.done_button.destroy()
+            self.summary_button.destroy()
+            Loginpage(root)
 
         self.main_bg = Image.open("rank_calc.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
@@ -107,11 +133,11 @@ class Rankcalculator:
         self.my_label.place(x=0, y=0, relwidth=1,relheight=1)
 
         self.exit_button = Button(parent, text="EXIT", height=2, width=10, font=("Helvitica", 15),
-                                  activebackground="#a3a3a3", command=exit_gui)
+                                  activebackground="#a3a3a3", command=message_exit)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
         self.home_button = Button(parent, text="Home", height=2, width=17, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3")
+                                  activebackground="#a3a3a3", command=home_back)
         self.home_button.place(x=0, y=0, relx=0.189, rely=0.15, anchor='w')
 
         self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
@@ -142,6 +168,8 @@ class Rankcalculator:
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20),
                                      activebackground="#a3a3a3")
         self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
+
+
 
 
 
