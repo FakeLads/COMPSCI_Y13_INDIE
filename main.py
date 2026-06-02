@@ -4,7 +4,7 @@ from tkinter import *
 
 from tkinter import messagebox, ttk
 
-# Imports PIL Image and Image Tk; helps diplays images in GUI
+# Imports PIL Image and Image Tk; helps displays images in GUI
 from PIL import Image, ImageTk
 
 from tkinter import PhotoImage
@@ -24,11 +24,11 @@ class Loginpage:
 
         def message_exit():
 
-            self.popup_frame = Frame(parent, height=500, width=1200, bg="Grey")
+            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
-            self.text_label = Label(self.popup_frame, height=50, width=50, text="WOULD YOU LIKE TO EXIT?", font=("Helvitica", 30), fg="White")
-            self.text_label.place(x=0, y=0, relx=0.5, rely=1, anchor='n')
+            self.text_label = Label(self.popup_frame, text="PLEASE CONFIRM YOUR EXIT", font=("Helvitica", 50), bg="Grey", fg="White")
+            self.text_label.place(relx=0.5, rely=0.25, anchor=CENTER)
 
             self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvitica", 20), bg="Dark Green", fg="White", command=proceed_destroy)
             self.yes_button.place(x=0, y=0, relx=0.1, rely=0.5)
@@ -119,8 +119,12 @@ class Rankcalculator:
     def __init__(self, parent):
 
         def message_exit():
-            self.popup_frame = Frame(parent, height=500, width=1200, bg="Grey")
+            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            self.text_label = Label(self.popup_frame, text="PLEASE CONFIRM YOUR EXIT", font=("Helvitica", 50),
+                                    bg="Grey", fg="White")
+            self.text_label.place(relx=0.5, rely=0.25, anchor=CENTER)
 
             self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvitica", 20),
                                      bg="Dark Green", fg="White", command=proceed_destroy)
@@ -137,6 +141,7 @@ class Rankcalculator:
             self.popup_frame.destroy()
             self.yes_button.destroy()
             self.no_button.destroy()
+            return
 
         def home_back():
 
@@ -201,14 +206,6 @@ class Rankcalculator:
 
 
 
-
-        #self.navi_bar = Frame(parent, height=160, width=1400, bg="White")
-        #self.navi_bar.pack_propagate(False)
-        #self.navi_bar.place(x=0, y=5, relx=0.5, rely=0.10, anchor='n')
-
-
-        #self.home_butt = Button(self.navi_bar, text="HOME", height=4, width=20, font=("Helvitica", 20))
-        #self.home_butt.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="w")
 
 
 
