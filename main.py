@@ -17,26 +17,35 @@ id_list = []
 
 branch_list = []
 
-def message_exit():
-
-    response = messagebox.askyesno("CONFIRMATION MESSAGE", "Please Confirm Exit")
-
-    if response:
-        return
-    else:
-        root.destroy()
-
-#def exit_if():
-
- #   if message_exit()
-  #  root.destroy()
-
-
-
 
 # The 'Loginpage' class holds all functions, methods and attributes related to the first opening page
 class Loginpage:
     def __init__(self, parent):
+
+        def message_exit():
+
+            self.popup_frame = Frame(parent, height=500, width=1200, bg="Grey")
+            self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            self.text_label = Label(self.popup_frame, height=50, width=50, text="WOULD YOU LIKE TO EXIT?", font=("Helvitica", 30), fg="White")
+            self.text_label.place(x=0, y=0, relx=0.5, rely=1, anchor='n')
+
+            self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvitica", 20), bg="Dark Green", fg="White", command=proceed_destroy)
+            self.yes_button.place(x=0, y=0, relx=0.1, rely=0.5)
+
+            self.no_button = Button(self.popup_frame, height=5, width=20, text="NO", font=("Helvitica", 20), bg="Red", fg="White", command=cancel_popup)
+            self.no_button.place(x=0, y=0, relx=0.65, rely=0.5)
+
+        def proceed_destroy():
+            root.destroy()
+
+        def cancel_popup():
+            self.popup_frame.destroy()
+            self.yes_button.destroy()
+            self.no_button.destroy()
+            return
+
+
 
         def id_collection():
 
@@ -108,6 +117,26 @@ class Loginpage:
 
 class Rankcalculator:
     def __init__(self, parent):
+
+        def message_exit():
+            self.popup_frame = Frame(parent, height=500, width=1200, bg="Grey")
+            self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvitica", 20),
+                                     bg="Dark Green", fg="White", command=proceed_destroy)
+            self.yes_button.place(x=0, y=0, relx=0.1, rely=0.5)
+
+            self.no_button = Button(self.popup_frame, height=5, width=20, text="NO", font=("Helvitica", 20), bg="Red",
+                                    fg="White", command=cancel_popup)
+            self.no_button.place(x=0, y=0, relx=0.65, rely=0.5)
+
+        def proceed_destroy():
+            root.destroy()
+
+        def cancel_popup():
+            self.popup_frame.destroy()
+            self.yes_button.destroy()
+            self.no_button.destroy()
 
         def home_back():
 
