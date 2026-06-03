@@ -24,6 +24,8 @@ class Loginpage:
 
         def message_exit():
 
+            self.button_exit.config(state="disabled")
+
             self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
@@ -43,9 +45,8 @@ class Loginpage:
             self.popup_frame.destroy()
             self.yes_button.destroy()
             self.no_button.destroy()
+            self.button_exit.config(state="normal")
             return
-
-
 
         def id_collection():
 
@@ -119,6 +120,9 @@ class Rankcalculator:
     def __init__(self, parent):
 
         def message_exit():
+
+            self.exit_button.config(state="disabled")
+
             self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
@@ -141,6 +145,7 @@ class Rankcalculator:
             self.popup_frame.destroy()
             self.yes_button.destroy()
             self.no_button.destroy()
+            self.exit_button.config(state="normal")
             return
 
         def home_back():
@@ -186,9 +191,11 @@ class Rankcalculator:
                                          activebackground="#a3a3a3")
         self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
 
-        self.inner_frame = Frame(parent, height=400, width=1350, bg="White")
+        self.inner_frame = Frame(parent, height=400, width=1350, bg="red")
         self.inner_frame.pack_propagate(False)
-        self.inner_frame.place(x=0, y=20, relx=0.5, rely=0.5, anchor=CENTER)
+        self.inner_frame.place(relx=0.5, rely=0.65, anchor=CENTER)
+
+
 
 
         self.outer_frame = Frame(height=130, width=1300, bg="#52005b")
@@ -202,6 +209,8 @@ class Rankcalculator:
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20),
                                      activebackground="#a3a3a3")
         self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
+
+
 
 
 
