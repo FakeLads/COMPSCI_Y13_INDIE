@@ -156,13 +156,12 @@ class Rankcalculator:
             self.help_button.destroy()
             self.my_label.destroy()
             self.exit_button.destroy()
-            self.inner_frame.destroy()
             self.outer_frame.destroy()
             self.done_button.destroy()
             self.summary_button.destroy()
             Loginpage(root)
 
-        self.main_bg = Image.open("rank_calc.png")
+        self.main_bg = Image.open("rank_calculator.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
         self.my_label = Label(parent, image=self.bg)
@@ -171,7 +170,7 @@ class Rankcalculator:
         self.my_label.image=self.bg
         self.my_label.place(x=0, y=0, relwidth=1,relheight=1)
 
-        self.exit_button = Button(parent, text="EXIT", height=2, width=10, font=("Helvitica", 15),
+        self.exit_button = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
                                   activebackground="#a3a3a3", command=message_exit)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
@@ -191,10 +190,13 @@ class Rankcalculator:
                                          activebackground="#a3a3a3")
         self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
 
-        self.inner_frame = Frame(parent, height=400, width=1350, bg="red")
-        self.inner_frame.pack_propagate(False)
-        self.inner_frame.place(relx=0.5, rely=0.65, anchor=CENTER)
+        #self.inner_frame = Frame(parent, height=400, width=1350, bg="red")
+        #self.inner_frame.pack_propagate(False)
+        #self.inner_frame.place(relx=0.5, rely=0.65, anchor=CENTER)
 
+        choices = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
+        self.branch_dropdown.place(x=0, y=0, rely=0.5, relx=0.5, anchor=CENTER)
 
 
 
@@ -209,6 +211,8 @@ class Rankcalculator:
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20),
                                      activebackground="#a3a3a3")
         self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
+
+
 
 
 
