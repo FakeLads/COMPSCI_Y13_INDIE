@@ -101,7 +101,7 @@ class Loginpage:
         self.entry_id.grid(row=1, column=1, padx=20, pady=20, columnspan=2)
 
         choices = ['1', '2', '3']
-        self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
+        self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices, state='readonly')
         self.branch_dropdown.grid(row=1, column=3, padx=20, pady=20, columnspan=2)
 
         self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20),
@@ -161,6 +161,11 @@ class Rankcalculator:
             self.summary_button.destroy()
             Loginpage(root)
 
+        def activate_button():
+
+            self.summary_button.config(state="normal")
+
+
         self.main_bg = Image.open("rank_calculator.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
@@ -194,32 +199,46 @@ class Rankcalculator:
         #self.inner_frame.pack_propagate(False)
         #self.inner_frame.place(relx=0.5, rely=0.65, anchor=CENTER)
 
-        choices = ['English', 'Maths', 'Science', 'History', 'Computer Science']
-        self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
-        self.branch_dropdown.place(x=0, y=0, rely=0.5, relx=0.5, anchor=CENTER)
+        #choices = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        #self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
+        #self.branch_dropdown.place(x=0, y=0, rely=0.5, relx=0.5, anchor=CENTER)
 
 
 
-        self.outer_frame = Frame(height=130, width=1300, bg="#52005b")
+        self.outer_frame = Frame(parent, height=130, width=1300, bg="#52005b")
         self.outer_frame.pack_propagate(False)
         self.outer_frame.place(x=0, y=5, relx=0.5, rely=0.96, anchor='s')
 
         self.done_button = Button(self.outer_frame, text="DONE", height=4, width=20, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3")
+                                  activebackground="#a3a3a3", command=activate_button)
         self.done_button.place(x=10, y=-10, relx=0, rely=0.5, anchor="w")
 
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20),
                                      activebackground="#a3a3a3")
         self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
+        self.summary_button.config(state='disabled')
 
 
 
+        first_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=first_subject, state='readonly')
+        self.branch_dropdown.place(x=0, y=0, rely=0.440, relx=0.280, anchor=CENTER)
 
+        second_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=second_subject, state='readonly')
+        self.branch_dropdown.place(x=0, y=0, rely=0.498, relx=0.280, anchor=CENTER)
 
+        third_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=third_subject, state='readonly')
+        self.branch_dropdown.place(x=0, y=0, rely=0.561, relx=0.280, anchor=CENTER)
 
+        fourth_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=fourth_subject, state='readonly')
+        self.branch_dropdown.place(x=0, y=0, rely=0.625, relx=0.280, anchor=CENTER)
 
-
-
+        fifth_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=fifth_subject, state='readonly')
+        self.branch_dropdown.place(x=0, y=0, rely=0.690, relx=0.280, anchor=CENTER)
 
 
 
