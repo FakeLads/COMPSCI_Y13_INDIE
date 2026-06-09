@@ -165,6 +165,37 @@ class Rankcalculator:
 
             self.summary_button.config(state="normal")
 
+            self.subject_one.config(state="disable")
+            self.subject_two.config(state="disable")
+            self.subject_three.config(state="disable")
+            self.subject_four.config(state="disable")
+            self.subject_five.config(state="disable")
+
+            self.subject_1_excellence.config(state="disable")
+            self.subject_1_merit.config(state="disable")
+            self.subject_1_achieved.config(state="disable")
+
+            self.subject_2_excellence.config(state="disable")
+            self.subject_2_merit.config(state="disable")
+            self.subject_2_achieved.config(state="disable")
+
+            self.subject_3_excellence.config(state="disable")
+            self.subject_3_merit.config(state="disable")
+            self.subject_3_achieved.config(state="disable")
+
+            self.subject_3_excellence.config(state="disable")
+            self.subject_3_merit.config(state="disable")
+            self.subject_3_achieved.config(state="disable")
+
+            self.subject_4_excellence.config(state="disable")
+            self.subject_4_merit.config(state="disable")
+            self.subject_4_achieved.config(state="disable")
+
+            self.subject_5_excellence.config(state="disable")
+            self.subject_5_merit.config(state="disable")
+            self.subject_5_achieved.config(state="disable")
+
+
 
         self.main_bg = Image.open("rank_calculator.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
@@ -195,14 +226,6 @@ class Rankcalculator:
                                          activebackground="#a3a3a3")
         self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
 
-        #self.inner_frame = Frame(parent, height=400, width=1350, bg="red")
-        #self.inner_frame.pack_propagate(False)
-        #self.inner_frame.place(relx=0.5, rely=0.65, anchor=CENTER)
-
-        #choices = ['English', 'Maths', 'Science', 'History', 'Computer Science']
-        #self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices)
-        #self.branch_dropdown.place(x=0, y=0, rely=0.5, relx=0.5, anchor=CENTER)
-
 
 
         self.outer_frame = Frame(parent, height=130, width=1300, bg="#52005b")
@@ -219,26 +242,102 @@ class Rankcalculator:
         self.summary_button.config(state='disabled')
 
 
+        #Subject drop-down menus:
+        subjects = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        self.subject_one = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly')
+        self.subject_one.place(x=0, y=0, rely=0.440, relx=0.280, anchor=CENTER)
 
-        first_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
-        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=first_subject, state='readonly')
-        self.branch_dropdown.place(x=0, y=0, rely=0.440, relx=0.280, anchor=CENTER)
+        self.subject_two = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly')
+        self.subject_two.place(x=0, y=0, rely=0.505, relx=0.280, anchor=CENTER)
 
-        second_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
-        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=second_subject, state='readonly')
-        self.branch_dropdown.place(x=0, y=0, rely=0.498, relx=0.280, anchor=CENTER)
+        self.subject_three = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly')
+        self.subject_three.place(x=0, y=0, rely=0.565, relx=0.280, anchor=CENTER)
 
-        third_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
-        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=third_subject, state='readonly')
-        self.branch_dropdown.place(x=0, y=0, rely=0.561, relx=0.280, anchor=CENTER)
+        self.subject_four = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly')
+        self.subject_four.place(x=0, y=0, rely=0.625, relx=0.280, anchor=CENTER)
 
-        fourth_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
-        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=fourth_subject, state='readonly')
-        self.branch_dropdown.place(x=0, y=0, rely=0.625, relx=0.280, anchor=CENTER)
+        self.subject_five = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly')
+        self.subject_five.place(x=0, y=0, rely=0.690, relx=0.280, anchor=CENTER)
 
-        fifth_subject = ['English', 'Maths', 'Science', 'History', 'Computer Science']
-        self.branch_dropdown = ttk.Combobox(parent, font=("Helvitica", 20), values=fifth_subject, state='readonly')
-        self.branch_dropdown.place(x=0, y=0, rely=0.690, relx=0.280, anchor=CENTER)
+
+        #Subject 1 Credits:
+        credits_num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                            '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
+                            '20', '21', '22', '23', '24']
+        self.subject_1_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
+                                               state='readonly')
+        self.subject_1_excellence.place(x=0, y=0, rely=0.440, relx=0.435, anchor=CENTER)
+
+        self.subject_1_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
+                                            state='readonly')
+        self.subject_1_merit.place(x=0, y=0, rely=0.440, relx=0.545, anchor=CENTER)
+
+        self.subject_1_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
+                                            state='readonly')
+        self.subject_1_achieved.place(x=0, y=0, rely=0.440, relx=0.659, anchor=CENTER)
+
+
+        #Subject 2 Credits:
+        self.subject_2_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
+                                            state='readonly')
+        self.subject_2_excellence.place(x=0, y=0, rely=0.505, relx=0.435, anchor=CENTER)
+
+        self.subject_2_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
+                                            state='readonly')
+        self.subject_2_merit.place(x=0, y=0, rely=0.505, relx=0.545, anchor=CENTER)
+
+        self.subject_2_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
+                                            state='readonly')
+        self.subject_2_achieved.place(x=0, y=0, rely=0.505, relx=0.659, anchor=CENTER)
+
+
+        #Subject 3 Credits:
+        self.subject_3_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
+                                            state='readonly')
+        self.subject_3_excellence.place(x=0, y=0, rely=0.565, relx=0.435, anchor=CENTER)
+
+        self.subject_3_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                                 values=credits_num,
+                                                 state='readonly')
+        self.subject_3_merit.place(x=0, y=0, rely=0.565, relx=0.545, anchor=CENTER)
+
+        self.subject_3_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                                 values=credits_num,
+                                                 state='readonly')
+        self.subject_3_achieved.place(x=0, y=0, rely=0.565, relx=0.659, anchor=CENTER)
+
+        #Subject 4 Credits:
+        self.subject_4_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                                 values=credits_num,
+                                                 state='readonly')
+        self.subject_4_excellence.place(x=0, y=0, rely=0.630, relx=0.435, anchor=CENTER)
+
+        self.subject_4_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                            values=credits_num,
+                                            state='readonly')
+        self.subject_4_merit.place(x=0, y=0, rely=0.630, relx=0.545, anchor=CENTER)
+
+        self.subject_4_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                               values=credits_num,
+                                               state='readonly')
+        self.subject_4_achieved.place(x=0, y=0, rely=0.630, relx=0.659, anchor=CENTER)
+
+
+        #Subject 5 Credits:
+        self.subject_5_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                                 values=credits_num,
+                                                 state='readonly')
+        self.subject_5_excellence.place(x=0, y=0, rely=0.690, relx=0.435, anchor=CENTER)
+
+        self.subject_5_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                            values=credits_num,
+                                            state='readonly')
+        self.subject_5_merit.place(x=0, y=0, rely=0.690, relx=0.545, anchor=CENTER)
+
+        self.subject_5_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
+                                               values=credits_num,
+                                               state='readonly')
+        self.subject_5_achieved.place(x=0, y=0, rely=0.690, relx=0.659, anchor=CENTER)
 
 
 
