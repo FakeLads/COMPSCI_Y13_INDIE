@@ -159,7 +159,60 @@ class Rankcalculator:
             self.outer_frame.destroy()
             self.done_button.destroy()
             self.summary_button.destroy()
+            self.subject_one.destroy()
+            self.subject_two.destroy()
+            self.subject_three.destroy()
+            self.subject_four.destroy()
+            self.subject_five.destroy()
+            self.subject_1_achieved.destroy()
+            self.subject_2_achieved.destroy()
+            self.subject_3_achieved.destroy()
+            self.subject_4_achieved.destroy()
+            self.subject_5_achieved.destroy()
+            self.subject_1_merit.destroy()
+            self.subject_2_merit.destroy()
+            self.subject_3_merit.destroy()
+            self.subject_4_merit.destroy()
+            self.subject_5_merit.destroy()
+            self.subject_1_excellence.destroy()
+            self.subject_2_excellence.destroy()
+            self.subject_3_excellence.destroy()
+            self.subject_4_excellence.destroy()
+            self.subject_5_excellence.destroy()
             Loginpage(root)
+
+        def to_subject():
+
+            self.home_button.destroy()
+            self.rank_calc_button.destroy()
+            self.information_button.destroy()
+            self.help_button.destroy()
+            self.my_label.destroy()
+            self.exit_button.destroy()
+            self.outer_frame.destroy()
+            self.done_button.destroy()
+            self.summary_button.destroy()
+            self.subject_one.destroy()
+            self.subject_two.destroy()
+            self.subject_three.destroy()
+            self.subject_four.destroy()
+            self.subject_five.destroy()
+            self.subject_1_achieved.destroy()
+            self.subject_2_achieved.destroy()
+            self.subject_3_achieved.destroy()
+            self.subject_4_achieved.destroy()
+            self.subject_5_achieved.destroy()
+            self.subject_1_merit.destroy()
+            self.subject_2_merit.destroy()
+            self.subject_3_merit.destroy()
+            self.subject_4_merit.destroy()
+            self.subject_5_merit.destroy()
+            self.subject_1_excellence.destroy()
+            self.subject_2_excellence.destroy()
+            self.subject_3_excellence.destroy()
+            self.subject_4_excellence.destroy()
+            self.subject_5_excellence.destroy()
+            subject_information(root)
 
         def activate_button():
 
@@ -219,7 +272,7 @@ class Rankcalculator:
         self.rank_calc_button.place(x=0, y=0, relx=0.364, rely=0.15, anchor='w')
 
         self.information_button = Button(parent, text="Subject Information", height=2, width=17, font=("Helvitica", 20),
-                                         activebackground="#a3a3a3")
+                                         activebackground="#a3a3a3", command=to_subject)
         self.information_button.place(x=0, y=0, relx=0.608, rely=0.15, anchor=CENTER)
 
         self.help_button = Button(parent, text="Help", height=2, width=17, font=("Helvitica", 20),
@@ -338,6 +391,79 @@ class Rankcalculator:
                                                values=credits_num,
                                                state='readonly')
         self.subject_5_achieved.place(x=0, y=0, rely=0.690, relx=0.659, anchor=CENTER)
+
+
+
+class subject_information:
+   def __init__(self, parent):
+
+        def message_exit():
+
+            self.exit_button.config(state="disabled")
+
+            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
+            self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            self.text_label = Label(self.popup_frame, text="PLEASE CONFIRM YOUR EXIT", font=("Helvitica", 50),
+                                    bg="Grey", fg="White")
+            self.text_label.place(relx=0.5, rely=0.25, anchor=CENTER)
+
+            self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvitica", 20),
+                                     bg="Dark Green", fg="White", command=proceed_destroy)
+            self.yes_button.place(x=0, y=0, relx=0.1, rely=0.5)
+
+            self.no_button = Button(self.popup_frame, height=5, width=20, text="NO", font=("Helvitica", 20), bg="Red",
+                                    fg="White", command=cancel_popup)
+            self.no_button.place(x=0, y=0, relx=0.65, rely=0.5)
+
+        def proceed_destroy():
+            root.destroy()
+
+        def cancel_popup():
+            self.popup_frame.destroy()
+            self.yes_button.destroy()
+            self.no_button.destroy()
+            self.exit_button.config(state="normal")
+            return
+
+        def to_rank():
+
+            self.home_button.destroy()
+            self.rank_calc_button.destroy()
+            self.information_button.destroy()
+            self.help_button.destroy()
+            self.my_label.destroy()
+            self.exit_button.destroy()
+            Rankcalculator(root)
+
+        self.main_bg = Image.open("subject_information.png")
+        self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
+        self.bg = ImageTk.PhotoImage(self.resized_image)
+        self.my_label = Label(parent, image=self.bg)
+
+        self.my_label = Label(parent, image=self.bg)
+        self.my_label.image = self.bg
+        self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        self.exit_button = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
+                                  activebackground="#a3a3a3", command=message_exit)
+        self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
+
+        self.home_button = Button(parent, text="Home", height=2, width=17, font=("Helvitica", 20),
+                                  activebackground="#a3a3a3")
+        self.home_button.place(x=0, y=0, relx=0.189, rely=0.15, anchor='w')
+
+        self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
+                                       activebackground="#a3a3a3", command=to_rank)
+        self.rank_calc_button.place(x=0, y=0, relx=0.364, rely=0.15, anchor='w')
+
+        self.information_button = Button(parent, text="Subject Information", height=2, width=17, font=("Helvitica", 20),
+                                         activebackground="#a3a3a3")
+        self.information_button.place(x=0, y=0, relx=0.608, rely=0.15, anchor=CENTER)
+
+        self.help_button = Button(parent, text="Help", height=2, width=17, font=("Helvitica", 20),
+                                  activebackground="#a3a3a3")
+        self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
 
 
 
