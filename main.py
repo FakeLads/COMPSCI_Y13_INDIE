@@ -465,6 +465,14 @@ class subject_information:
                                   activebackground="#a3a3a3")
         self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
 
+        #self.shutdown_image = Image.open("exithelp.png")
+        #self.shutdown_image_tk = ImageTk.PhotoImage(self.shutdown_image)
+
+        #self.shutdown_button = Button(self.pframe, command=self.shutdown, image=self.shutdown_image_tk,
+        #                              background=background_color,
+        #                             activebackground=background_color, borderwidth=0, cursor="hand2")
+        #self.shutdown_button.place(relx=0.95, rely=0.06, anchor="center")
+        #self.shutdown_button.image = self.shutdown_image_tk
 
 
 
