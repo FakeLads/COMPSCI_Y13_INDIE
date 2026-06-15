@@ -216,38 +216,95 @@ class Rankcalculator:
 
         def activate_button():
 
-            self.summary_button.config(state="normal")
+            sub_1 = self.subject_one.get().strip()
+            sub_2 = self.subject_two.get().strip()
+            sub_3 = self.subject_three.get().strip()
+            sub_4 = self.subject_four.get().strip()
+            sub_5 = self.subject_five.get().strip()
 
-            self.subject_one.config(state="disable")
-            self.subject_two.config(state="disable")
-            self.subject_three.config(state="disable")
-            self.subject_four.config(state="disable")
-            self.subject_five.config(state="disable")
+            if not sub_1:
+                messagebox.showerror("ERROR", "Your Are Missing Subject 1")
+                return
 
-            self.subject_1_excellence.config(state="disable")
-            self.subject_1_merit.config(state="disable")
-            self.subject_1_achieved.config(state="disable")
+            if not sub_2:
+                messagebox.showerror("ERROR", "Your Are Missing Subject 2")
+                return
 
-            self.subject_2_excellence.config(state="disable")
-            self.subject_2_merit.config(state="disable")
-            self.subject_2_achieved.config(state="disable")
+            if not sub_3:
+                messagebox.showerror("ERROR", "Your Are Missing Subject 3")
+                return
 
-            self.subject_3_excellence.config(state="disable")
-            self.subject_3_merit.config(state="disable")
-            self.subject_3_achieved.config(state="disable")
+            if not sub_4:
+                messagebox.showerror("ERROR", "Your Are Missing Subject 4")
+                return
 
-            self.subject_3_excellence.config(state="disable")
-            self.subject_3_merit.config(state="disable")
-            self.subject_3_achieved.config(state="disable")
+            if not sub_5:
+                messagebox.showerror("ERROR", "Your Are Missing Subject 5")
+                return
 
-            self.subject_4_excellence.config(state="disable")
-            self.subject_4_merit.config(state="disable")
-            self.subject_4_achieved.config(state="disable")
+            else:
+                self.summary_button.config(state="normal")
 
-            self.subject_5_excellence.config(state="disable")
-            self.subject_5_merit.config(state="disable")
-            self.subject_5_achieved.config(state="disable")
+                self.subject_one.config(state="disabled")
+                self.subject_two.config(state="disabled")
+                self.subject_three.config(state="disabled")
+                self.subject_four.config(state="disabled")
+                self.subject_five.config(state="disabled")
 
+                self.subject_1_excellence.config(state="disabled")
+                self.subject_1_merit.config(state="disabled")
+                self.subject_1_achieved.config(state="disabled")
+
+                self.subject_2_excellence.config(state="disabled")
+                self.subject_2_merit.config(state="disabled")
+                self.subject_2_achieved.config(state="disabled")
+
+                self.subject_3_excellence.config(state="disabled")
+                self.subject_3_merit.config(state="disabled")
+                self.subject_3_achieved.config(state="disabled")
+
+                self.subject_3_excellence.config(state="disabled")
+                self.subject_3_merit.config(state="disabled")
+                self.subject_3_achieved.config(state="disabled")
+
+                self.subject_4_excellence.config(state="disabled")
+                self.subject_4_merit.config(state="disabled")
+                self.subject_4_achieved.config(state="disabled")
+
+                self.subject_5_excellence.config(state="disabled")
+                self.subject_5_merit.config(state="disabled")
+                self.subject_5_achieved.config(state="disabled")
+
+        def calculate_summary():
+            subject_rows = [
+                (self.subject_1_excellence, self.subject_1_merit, self.subject_1_achieved),
+                (self.subject_2_excellence, self.subject_2_merit, self.subject_2_achieved),
+                (self.subject_3_excellence, self.subject_3_merit, self.subject_3_achieved),
+                (self.subject_4_excellence, self.subject_4_merit, self.subject_4_achieved),
+                (self.subject_5_excellence, self.subject_5_merit, self.subject_5_achieved),
+
+            ]
+
+            total_score = 0
+
+            for exc_cb, mer_cb, ach_cb in subject_rows:
+                exc_val = int(exc_cb.get() if exc_cb.get() else 0)
+                mer_val = int(mer_cb.get() if mer_cb.get() else 0)
+                ach_val = int(ach_cb.get() if ach_cb.get() else 0)
+
+                total_score += (exc_val * 4) + (mer_val * 3) + (ach_val * 2)
+
+            self.exit_button.config(state="disabled")
+
+            self.summary_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
+            self.summary_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            self.summary_label = Label(self.summary_frame, text=f"Your Rank Score is: {total_score}", font=("Helvitica", 50),
+                                    bg="Grey", fg="White")
+            self.summary_label.place(relx=0.5, rely=0.25, anchor=CENTER)
+
+            self.delete_button = Button(self.summary_frame, text="DELETE", height=2, width=15, font=("Helvitica", 20),)
+            self.delete_button.place(x=0, y=0, relwidth=1, relheight=1)
 
 
         self.main_bg = Image.open("rank_calculator.png")
@@ -290,7 +347,7 @@ class Rankcalculator:
         self.done_button.place(x=10, y=-10, relx=0, rely=0.5, anchor="w")
 
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20),
-                                     activebackground="#a3a3a3")
+                                     activebackground="#a3a3a3", command=calculate_summary)
         self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
         self.summary_button.config(state='disabled')
 
@@ -441,18 +498,6 @@ class subject_information:
             self.my_label.destroy()
             self.exit_button.destroy()
             Rankcalculator(root)
-
-        def subject_search():
-            self.summary_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
-            self.summary_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
-
-            self.text_summary = Label(self.summary_frame, text="ENGLISH", font=("Helvitica", 50),
-                                    bg="Grey", fg="White")
-            self.text_summary.place(relx=0.5, rely=0.25, anchor=CENTER)
-
-            self
-
-
 
 
         self.main_bg = Image.open("subjects.png")
