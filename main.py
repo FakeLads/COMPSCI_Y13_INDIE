@@ -275,7 +275,9 @@ class Rankcalculator:
                 self.subject_5_merit.config(state="disabled")
                 self.subject_5_achieved.config(state="disabled")
 
+
         def calculate_summary():
+
             subject_rows = [
                 (self.subject_1_excellence, self.subject_1_merit, self.subject_1_achieved),
                 (self.subject_2_excellence, self.subject_2_merit, self.subject_2_achieved),
@@ -294,17 +296,59 @@ class Rankcalculator:
 
                 total_score += (exc_val * 4) + (mer_val * 3) + (ach_val * 2)
 
+            def delete_summary():
+                self.summary_frame.destroy()
+                self.summary_label.destroy()
+                self.delete_button.destroy()
+
+                self.summary_button.config(state="disabled")
+
+                self.subject_one.config(state="normal")
+                self.subject_two.config(state="normal")
+                self.subject_three.config(state="normal")
+                self.subject_four.config(state="normal")
+                self.subject_five.config(state="normal")
+
+                self.subject_1_excellence.config(state="normal")
+                self.subject_1_merit.config(state="normal")
+                self.subject_1_achieved.config(state="normal")
+
+                self.subject_2_excellence.config(state="normal")
+                self.subject_2_merit.config(state="normal")
+                self.subject_2_achieved.config(state="normal")
+
+                self.subject_3_excellence.config(state="normal")
+                self.subject_3_merit.config(state="normal")
+                self.subject_3_achieved.config(state="normal")
+
+                self.subject_3_excellence.config(state="normal")
+                self.subject_3_merit.config(state="normal")
+                self.subject_3_achieved.config(state="normal")
+
+                self.subject_4_excellence.config(state="normal")
+                self.subject_4_merit.config(state="normal")
+                self.subject_4_achieved.config(state="normal")
+
+                self.subject_5_excellence.config(state="normal")
+                self.subject_5_merit.config(state="normal")
+                self.subject_5_achieved.config(state="normal")
+
+                self.exit_button.config(state="normal")
+
+                #total_score = 0
+
             self.exit_button.config(state="disabled")
 
             self.summary_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
             self.summary_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
-            self.summary_label = Label(self.summary_frame, text=f"Your Rank Score is: {total_score}", font=("Helvitica", 50),
-                                    bg="Grey", fg="White")
+            self.summary_label = Label(self.summary_frame, text=f"Your Rank Score is: {total_score}",
+                                       font=("Helvitica", 50), bg="Grey", fg="White")
             self.summary_label.place(relx=0.5, rely=0.25, anchor=CENTER)
 
-            self.delete_button = Button(self.summary_frame, text="DELETE", height=2, width=15, font=("Helvitica", 20),)
-            self.delete_button.place(x=0, y=0, relwidth=1, relheight=1)
+            self.delete_button = Button(self.summary_frame, text="DELETE", height=1, width=2, font=("Helvitica", 20),
+                                        command=delete_summary)
+            self.delete_button.place(x=-20, y=-5, rely=0.5, relx=0.5, relwidth=0.5, relheight=0.5, anchor='ne')
 
 
         self.main_bg = Image.open("rank_calculator.png")
@@ -536,17 +580,6 @@ class subject_information:
 
         self.done_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#a3a3a3")
         self.done_button.place(x=0, y=0, relx=0.5, rely=0.725, anchor=CENTER)
-
-
-
-        #self.shutdown_image = Image.open("exithelp.png")
-        #self.shutdown_image_tk = ImageTk.PhotoImage(self.shutdown_image)
-
-        #self.shutdown_button = Button(self.pframe, command=self.shutdown, image=self.shutdown_image_tk,
-        #                              background=background_color,
-        #                             activebackground=background_color, borderwidth=0, cursor="hand2")
-        #self.shutdown_button.place(relx=0.95, rely=0.06, anchor="center")
-        #self.shutdown_button.image = self.shutdown_image_tk
 
 
 
