@@ -303,35 +303,35 @@ class Rankcalculator:
 
                 self.summary_button.config(state="disabled")
 
-                self.subject_one.config(state="normal")
-                self.subject_two.config(state="normal")
-                self.subject_three.config(state="normal")
-                self.subject_four.config(state="normal")
-                self.subject_five.config(state="normal")
+                self.subject_one.config(state="readonly")
+                self.subject_two.config(state="readonly")
+                self.subject_three.config(state="readonly")
+                self.subject_four.config(state="readonly")
+                self.subject_five.config(state="readonly")
 
-                self.subject_1_excellence.config(state="normal")
-                self.subject_1_merit.config(state="normal")
-                self.subject_1_achieved.config(state="normal")
+                self.subject_1_excellence.config(state="readonly")
+                self.subject_1_merit.config(state="readonly")
+                self.subject_1_achieved.config(state="readonly")
 
-                self.subject_2_excellence.config(state="normal")
-                self.subject_2_merit.config(state="normal")
-                self.subject_2_achieved.config(state="normal")
+                self.subject_2_excellence.config(state="readonly")
+                self.subject_2_merit.config(state="readonly")
+                self.subject_2_achieved.config(state="readonly")
 
-                self.subject_3_excellence.config(state="normal")
-                self.subject_3_merit.config(state="normal")
-                self.subject_3_achieved.config(state="normal")
+                self.subject_3_excellence.config(state="readonly")
+                self.subject_3_merit.config(state="readonly")
+                self.subject_3_achieved.config(state="readonly")
 
-                self.subject_3_excellence.config(state="normal")
-                self.subject_3_merit.config(state="normal")
-                self.subject_3_achieved.config(state="normal")
+                self.subject_3_excellence.config(state="readonly")
+                self.subject_3_merit.config(state="readonly")
+                self.subject_3_achieved.config(state="readonly")
 
-                self.subject_4_excellence.config(state="normal")
-                self.subject_4_merit.config(state="normal")
-                self.subject_4_achieved.config(state="normal")
+                self.subject_4_excellence.config(state="readonly")
+                self.subject_4_merit.config(state="readonly")
+                self.subject_4_achieved.config(state="readonly")
 
-                self.subject_5_excellence.config(state="normal")
-                self.subject_5_merit.config(state="normal")
-                self.subject_5_achieved.config(state="normal")
+                self.subject_5_excellence.config(state="readonly")
+                self.subject_5_merit.config(state="readonly")
+                self.subject_5_achieved.config(state="readonly")
 
                 self.exit_button.config(state="normal")
 
@@ -346,9 +346,13 @@ class Rankcalculator:
                                        font=("Helvitica", 50), bg="Grey", fg="White")
             self.summary_label.place(relx=0.5, rely=0.25, anchor=CENTER)
 
-            self.delete_button = Button(self.summary_frame, text="DELETE", height=1, width=2, font=("Helvitica", 20),
-                                        command=delete_summary)
-            self.delete_button.place(x=-20, y=-5, rely=0.5, relx=0.5, relwidth=0.5, relheight=0.5, anchor='ne')
+            self.exit_image = Image.open("exithelp.png")
+            self.exit_image_tk = ImageTk.PhotoImage(self.exit_image)
+
+            self.delete_button = Button(self.summary_frame, text="x", height=1, width=1, font=("Helvitica", 35),
+                                        command=delete_summary, image=self.exit_image_tk, cursor="hand2")
+            self.delete_button.place(x=0, y=0, rely=0.590, relx=0.590, relwidth=0.5, relheight=0.5, anchor=CENTER)
+            self.delete_button.image = self.exit_image_tk
 
 
         self.main_bg = Image.open("rank_calculator.png")
