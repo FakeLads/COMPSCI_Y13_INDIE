@@ -342,16 +342,20 @@ class Rankcalculator:
             self.summary_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
             self.summary_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
-            self.summary_label = Label(self.summary_frame, text=f"Your Rank Score is: {total_score}",
+            self.summary_label = Label(self.summary_frame, text=f"Your Rank Score is:",
                                        font=("Helvitica", 50), bg="Grey", fg="White")
             self.summary_label.place(relx=0.5, rely=0.25, anchor=CENTER)
 
-            self.exit_image = Image.open("exithelp.png")
-            self.exit_image_tk = ImageTk.PhotoImage(self.exit_image)
+            self.value_label = Label(self.summary_frame, text=f"{total_score}", font=("helvitica", 80, "bold"), bg="Grey", fg="White")
+            self.value_label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-            self.delete_button = Button(self.summary_frame, text="x", height=1, width=1, font=("Helvitica", 35),
-                                        command=delete_summary, image=self.exit_image_tk, cursor="hand2")
-            self.delete_button.place(x=0, y=0, rely=0.590, relx=0.590, relwidth=0.5, relheight=0.5, anchor=CENTER)
+            exit_image = Image.open("red_x.png")
+            exit_image = exit_image.resize((115, 128))
+            self.exit_image_tk = ImageTk.PhotoImage(exit_image)
+
+            self.delete_button = Button(self.summary_frame,
+                                        command=delete_summary, image=self.exit_image_tk, cursor="hand2", background="Grey", relief="flat")
+            self.delete_button.place(x=0, y=0, rely=0.18, relx=0.92, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
 
