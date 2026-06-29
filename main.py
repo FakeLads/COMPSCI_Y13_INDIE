@@ -339,15 +339,15 @@ class Rankcalculator:
 
             self.exit_button.config(state="disabled")
 
-            self.summary_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
+            self.summary_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1000, bg="Grey")
             self.summary_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
             self.summary_label = Label(self.summary_frame, text=f"Your Rank Score is:",
                                        font=("Helvitica", 50), bg="Grey", fg="White")
-            self.summary_label.place(relx=0.5, rely=0.25, anchor=CENTER)
+            self.summary_label.place(relx=0.5, rely=0.35, anchor=CENTER)
 
             self.value_label = Label(self.summary_frame, text=f"{total_score}", font=("helvitica", 80, "bold"), bg="Grey", fg="White")
-            self.value_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+            self.value_label.place(relx=0.5, rely=0.6, anchor=CENTER)
 
             exit_image = Image.open("red_x.png")
             exit_image = exit_image.resize((115, 128))
