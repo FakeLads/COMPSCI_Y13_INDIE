@@ -502,11 +502,20 @@ class Rankcalculator:
                                                justify="center")
         self.subject_5_achieved.place(x=0, y=0, rely=0.690, relx=0.659, anchor=CENTER)
 
-        self.total_credits_1 = Entry(parent, width=10, height=10, font=("Helvitica", 20))
-        self.total_credits_1.place(x=0, y=0, rely=0.5, relx=0.5, anchor=CENTER)
+        self.total_credits_1 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
+        self.total_credits_1.place(x=0, y=0, rely=0.440, relx=0.769, anchor=CENTER)
 
-        self.total_credits_2 = Entry(parent, width=10, height=10, font=("Helvitica", 20))
-        self.total_credits_2.place(x=0, y=0, rely=0.5, relx=0.5, anchor=CENTER)
+        self.total_credits_2 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
+        self.total_credits_2.place(x=0, y=0, rely=0.505, relx=0.769, anchor=CENTER)
+
+        self.total_credits_3 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
+        self.total_credits_3.place(x=0, y=0, rely=0.565, relx=0.769, anchor=CENTER)
+
+        self.total_credits_4 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
+        self.total_credits_4.place(x=0, y=0, rely=0.630, relx=0.769, anchor=CENTER)
+
+        self.total_credits_5 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
+        self.total_credits_5.place(x=0, y=0, rely=0.690, relx=0.769, anchor=CENTER)
 
 
 class subject_information:
