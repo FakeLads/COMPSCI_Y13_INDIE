@@ -355,7 +355,7 @@ class Rankcalculator:
 
             self.delete_button = Button(self.summary_frame,
                                         command=delete_summary, image=self.exit_image_tk, cursor="hand2", background="Grey", relief="flat")
-            self.delete_button.place(x=0, y=0, rely=0.18, relx=0.92, anchor=CENTER)
+            self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
 
