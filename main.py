@@ -540,6 +540,19 @@ class subject_information:
                                     fg="White", command=cancel_popup)
             self.no_button.place(x=0, y=0, relx=0.65, rely=0.5)
 
+        def back_home():
+
+            self.my_label.destroy()
+            self.exit_button.destroy()
+            self.home_button.destroy()
+            self.rank_calc_button.destroy()
+            self.information_button.destroy()
+            self.help_button.destroy()
+            self.subject.destroy()
+            self.done_button.destroy()
+            Loginpage(root)
+
+
         def proceed_destroy():
             root.destroy()
 
@@ -551,7 +564,6 @@ class subject_information:
             return
 
         def to_rank():
-
             self.home_button.destroy()
             self.rank_calc_button.destroy()
             self.information_button.destroy()
@@ -559,6 +571,24 @@ class subject_information:
             self.my_label.destroy()
             self.exit_button.destroy()
             Rankcalculator(root)
+
+        def subject_selected():
+
+            self.description_page = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
+            self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            if self.subject == 'English':
+
+                self.text_label = Label(self.description_page, text="The subject", font=("Helvitica", 50),
+                                    bg="Grey", fg="White")
+                self.text_label.place(relx=0.5, rely=0.35, anchor=CENTER)
+
+            if self.subject == 'Computer Science':
+
+                self.text_label = Label(self.description_page, text="The subject", font=("Helvitica", 50),
+                                        bg="Grey", fg="White")
+                self.text_label.place(relx=0.5, rely=0.35, anchor=CENTER)
+
 
 
         self.main_bg = Image.open("subjects.png")
@@ -575,7 +605,7 @@ class subject_information:
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
         self.home_button = Button(parent, text="Home", height=2, width=17, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3")
+                                  activebackground="#a3a3a3", command=back_home)
         self.home_button.place(x=0, y=0, relx=0.189, rely=0.15, anchor='w')
 
         self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
@@ -595,7 +625,7 @@ class subject_information:
                                     values=subject_choice, state="readonly", justify="center")
         self.subject.place(x=0, y=0, relheight=0.1, relx=0.5, rely=0.620, anchor=CENTER)
 
-        self.done_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#a3a3a3")
+        self.done_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#a3a3a3", command=subject_selected)
         self.done_button.place(x=0, y=0, relx=0.5, rely=0.725, anchor=CENTER)
 
 
