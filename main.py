@@ -384,9 +384,12 @@ class Rankcalculator:
                                          activebackground="#a3a3a3", command=to_subject)
         self.information_button.place(x=0, y=0, relx=0.608, rely=0.15, anchor=CENTER)
 
-        self.help_button = Button(parent, text="Help", height=2, width=17, font=("Helvitica", 20),
-                                         activebackground="#a3a3a3")
-        self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
+        help_image = Image.open("Your4.png")
+        help_image = help_image.resize((180, 180), Image.LANCZOS)
+        self.help_image_tk = ImageTk.PhotoImage(help_image)
+
+        self.help_button = Button(parent, image=self.help_image_tk, cursor="hand2", background="#52005b", relief="flat")
+        self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
 
 
