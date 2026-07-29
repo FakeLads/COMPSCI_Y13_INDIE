@@ -359,6 +359,49 @@ class Rankcalculator:
             self.delete_button.image = self.exit_image_tk
 
 
+        def help_button():
+
+            def delete_popup():
+                self.popup_frame.destroy()
+                self.text_label.destroy()
+                self.delete_button.destroy()
+
+            self.exit_button.config(state="disabled")
+
+            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1300, bg="#52005b")
+            self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            self.text_label = Label(self.popup_frame, text="Curious to discover the progress towards entry into "
+                                                               "University, by using the rank score calculator you are "
+                                                               "able to efficiently and effectively calculate your "
+                                                               "total rank score from your total accumulated credits "
+                                                               "throughout your five subjects. \nTo operate the "
+                                                               "calculator, please select all five subjects you"
+                                                               " have taken throughout the year before entering all "
+                                                               "achieved, merit and excellence credits. "
+                                                               "You must enter in each subject, even if you"
+                                                               " have not acquired any credits throughout the year. "
+                                                               "\nOnce you have entered in all necessary values, "
+                                                               "select the “DONE” button. "
+                                                               "This will activate the ‘SUMMARY’, permitting you to"
+                                                               " see your total rank score without any interruptions. "
+                                                               "\nOnce you finished, select the ‘X’ button where you will"
+                                                               " be taken back to the original screen.",
+                                        font=("Helvitica", 20),
+                                        bg="#52005b", fg="White")
+            self.text_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+            exit_image = Image.open("red_x.png")
+            exit_image = exit_image.resize((115, 128))
+            self.exit_image_tk = ImageTk.PhotoImage(exit_image)
+
+            self.delete_button = Button(self.popup_frame,
+                                        command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                        background="#52005b", relief="flat")
+            self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
+            self.delete_button.image = self.exit_image_tk
+
+
         self.main_bg = Image.open("rank_calculator.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
@@ -369,7 +412,7 @@ class Rankcalculator:
         self.my_label.place(x=0, y=0, relwidth=1,relheight=1)
 
         self.exit_button = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3", command=message_exit)
+                                  activebackground="Grey", command=message_exit)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
         self.home_button = Button(parent, text="Home", height=2, width=17, font=("Helvitica", 20),
@@ -388,7 +431,7 @@ class Rankcalculator:
         help_image = help_image.resize((180, 180), Image.LANCZOS)
         self.help_image_tk = ImageTk.PhotoImage(help_image)
 
-        self.help_button = Button(parent, image=self.help_image_tk, cursor="hand2", background="#52005b", relief="flat")
+        self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2", background="#52005b", relief="flat")
         self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
 
