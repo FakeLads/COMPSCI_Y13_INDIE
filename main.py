@@ -297,7 +297,7 @@ class Rankcalculator:
 
             self.exit_button.config(state="disabled")
 
-            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1300, bg="#792782")
+            self.popup_frame = Frame(parent, borderwidth=5, relief="solid", height=650, width=1300, bg="#792782")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
             self.help_text = Label(self.popup_frame, text="\nCurious to discover the progress towards entry into University?"
@@ -537,7 +537,7 @@ class subject_information:
 
             self.exit_button.config(state="disabled")
 
-            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1300, bg="#792782")
+            self.popup_frame = Frame(parent, borderwidth=5, relief="solid", height=650, width=1300, bg="#792782")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
             self.help_text = Label(self.popup_frame,
