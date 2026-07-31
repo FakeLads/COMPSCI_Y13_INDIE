@@ -48,45 +48,15 @@ class Loginpage:
             self.button_exit.config(state="normal")
             return
 
-        def id_collection():
-
-            name = self.entry_id.get().strip()
-
-            branch = self.branch_dropdown.get().strip()
-
-            if not name:
-                messagebox.showerror("ERROR",
-                                     "Please enter an I.D")
-                return
-
-            if len(name) > 5:
-                messagebox.showerror("ERROR TOO MUCH CHARACTERS",
-                                     "Student ID must be 5 characters")
-                return
-
-            if len(name) < 5:
-                messagebox.showerror("ERROR: INSUFFICIENT AMOUNT OF CHARACTERS",
-                                     "Student ID must be 5 characters")
-                return
-
-            if not branch:
-                messagebox.showerror("ERROR", "Drop Down Menu Empty")
-                return
-
-            if len(branch) > 1:
-                messagebox.showerror("ERROR: TOO MANY CHARACTERS", "Year level should be a single digit")
-                return
-
-            else:
-                id_list.append(name)
-                self.my_frame.destroy()
-                self.my_label.destroy()
-                self.button_exit.destroy()
-                Rankcalculator(root)
+        def go_button():
+            self.my_label.destroy()
+            self.my_frame.destroy()
+            self.button_go.destroy()
+            self.button_exit.destroy()
+            Rankcalculator(root)
 
 
-
-        self.bg = Image.open("login_page_NO_buttons.png")
+        self.bg = Image.open("home_bright.png")
         self.resized_image = self.bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
 
@@ -94,25 +64,16 @@ class Loginpage:
         self.my_label.image=self.bg
         self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.my_frame = Frame(parent, height=300, width=1000, bg="#52005b")
+        self.my_frame = Frame(parent, height=300, width=1000, bg="#792782")
         self.my_frame.place(x=0, y=0, relx=0.5, rely=0.6, anchor=CENTER)
 
-        self.entry_id = Entry(self.my_frame, font=("Helvitica", 28))
-        self.entry_id.grid(row=1, column=1, padx=20, pady=20, columnspan=2)
-
-        choices = ['1', '2', '3']
-        self.branch_dropdown = ttk.Combobox(self.my_frame, font=("Helvitica", 28), values=choices, state='readonly', justify='center')
-        self.branch_dropdown.grid(row=1, column=3, padx=20, pady=20, columnspan=2)
-
         self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20),
-                                activebackground="#a3a3a3", command=id_collection)
+                                activebackground="#792782", command=go_button)
         self.button_go.grid(row=2, column=2, pady=20, columnspan=2)
 
         self.button_exit = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3", command=message_exit)
+                                  activebackground="#792782", command=message_exit)
         self.button_exit.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
-
-
 
 
 
@@ -148,42 +109,8 @@ class Rankcalculator:
             self.exit_button.config(state="normal")
             return
 
-        def home_back():
-
-            self.home_button.destroy()
-            self.rank_calc_button.destroy()
-            self.information_button.destroy()
-            self.help_button.destroy()
-            self.my_label.destroy()
-            self.exit_button.destroy()
-            self.outer_frame.destroy()
-            self.done_button.destroy()
-            self.summary_button.destroy()
-            self.subject_one.destroy()
-            self.subject_two.destroy()
-            self.subject_three.destroy()
-            self.subject_four.destroy()
-            self.subject_five.destroy()
-            self.subject_1_achieved.destroy()
-            self.subject_2_achieved.destroy()
-            self.subject_3_achieved.destroy()
-            self.subject_4_achieved.destroy()
-            self.subject_5_achieved.destroy()
-            self.subject_1_merit.destroy()
-            self.subject_2_merit.destroy()
-            self.subject_3_merit.destroy()
-            self.subject_4_merit.destroy()
-            self.subject_5_merit.destroy()
-            self.subject_1_excellence.destroy()
-            self.subject_2_excellence.destroy()
-            self.subject_3_excellence.destroy()
-            self.subject_4_excellence.destroy()
-            self.subject_5_excellence.destroy()
-            Loginpage(root)
-
         def to_subject():
 
-            self.home_button.destroy()
             self.rank_calc_button.destroy()
             self.information_button.destroy()
             self.help_button.destroy()
@@ -363,33 +290,28 @@ class Rankcalculator:
 
             def delete_popup():
                 self.popup_frame.destroy()
-                self.text_label.destroy()
+                self.help_text.destroy()
                 self.delete_button.destroy()
+                self.exit_button.config(state="normal")
+
 
             self.exit_button.config(state="disabled")
 
-            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1300, bg="#52005b")
+            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1300, bg="#792782")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
-            self.text_label = Label(self.popup_frame, text="Curious to discover the progress towards entry into "
-                                                               "University, by using the rank score calculator you are "
-                                                               "able to efficiently and effectively calculate your "
-                                                               "total rank score from your total accumulated credits "
-                                                               "throughout your five subjects. \nTo operate the "
-                                                               "calculator, please select all five subjects you"
-                                                               " have taken throughout the year before entering all "
-                                                               "achieved, merit and excellence credits. "
-                                                               "You must enter in each subject, even if you"
-                                                               " have not acquired any credits throughout the year. "
-                                                               "\nOnce you have entered in all necessary values, "
-                                                               "select the “DONE” button. "
-                                                               "This will activate the ‘SUMMARY’, permitting you to"
-                                                               " see your total rank score without any interruptions. "
-                                                               "\nOnce you finished, select the ‘X’ button where you will"
-                                                               " be taken back to the original screen.",
-                                        font=("Helvitica", 20),
-                                        bg="#52005b", fg="White")
-            self.text_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+            self.help_text = Label(self.popup_frame, text="\nCurious to discover the progress towards entry into University?"
+                                                          " \nBy using the rank score calculator you are able to efficiently and effectively calculate your total rank score"
+                                                          " \nfrom your total accumulated credits throughout your five subjects."
+                                                          "\n\nTo operate the calculator, please select all five subjects you have taken throughout the year"
+                                                          "\nbefore entering all achieved, merit and excellence credits."
+                                                          "\nYou must enter in each subject, even if you have not acquired any credits throughout the year."
+                                                          "\n\nOnce you have entered in all necessary values, select the “DONE” button. "
+                                                          "\nThis will activate the ‘SUMMARY’, permitting you to see your total rank score without any interruptions."
+                                                          "\n\nOnce you finished, select the ‘X’ button where you will be taken back to the original screen.", font=("Helvitica", 16), bg="#792782", fg="white",
+                                   bd=0, highlightthickness=0)
+            self.help_text.place(relx=0.5, rely=0.4, anchor=CENTER)
+
 
             exit_image = Image.open("red_x.png")
             exit_image = exit_image.resize((115, 128))
@@ -397,12 +319,12 @@ class Rankcalculator:
 
             self.delete_button = Button(self.popup_frame,
                                         command=delete_popup, image=self.exit_image_tk, cursor="hand2",
-                                        background="#52005b", relief="flat")
+                                        background="#792782", relief="flat")
             self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
 
-        self.main_bg = Image.open("rank_calculator.png")
+        self.main_bg = Image.open("bright_cal.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
         self.my_label = Label(parent, image=self.bg)
@@ -415,37 +337,35 @@ class Rankcalculator:
                                   activebackground="Grey", command=message_exit)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
-        self.home_button = Button(parent, text="Home", height=2, width=17, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3", command=home_back)
-        self.home_button.place(x=0, y=0, relx=0.189, rely=0.15, anchor='w')
-
         self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
-                                activebackground="#a3a3a3")
-        self.rank_calc_button.place(x=0, y=0, relx=0.364, rely=0.15, anchor='w')
+                                activebackground="#792782")
+        self.rank_calc_button.place(x=0, y=0, relx=0.330, rely=0.15, anchor='w')
 
         self.information_button = Button(parent, text="Subject Information", height=2, width=17, font=("Helvitica", 20),
-                                         activebackground="#a3a3a3", command=to_subject)
-        self.information_button.place(x=0, y=0, relx=0.608, rely=0.15, anchor=CENTER)
+                                         activebackground="#792782", command=to_subject)
+        self.information_button.place(x=0, y=0, relx=0.620, rely=0.15, anchor=CENTER)
+
+
 
         help_image = Image.open("Your4.png")
         help_image = help_image.resize((180, 180), Image.LANCZOS)
         self.help_image_tk = ImageTk.PhotoImage(help_image)
 
-        self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2", background="#52005b", relief="flat")
+        self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2", background="#792782", relief="flat")
         self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
 
 
-        self.outer_frame = Frame(parent, height=130, width=1300, bg="#52005b")
+        self.outer_frame = Frame(parent, height=130, width=1300, bg="#792782")
         self.outer_frame.pack_propagate(False)
         self.outer_frame.place(x=0, y=5, relx=0.5, rely=0.96, anchor='s')
 
         self.done_button = Button(self.outer_frame, text="DONE", height=4, width=20, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3", command=activate_button)
+                                  activebackground="#792782", command=activate_button)
         self.done_button.place(x=10, y=-10, relx=0, rely=0.5, anchor="w")
 
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20),
-                                     activebackground="#a3a3a3", command=calculate_summary)
+                                     activebackground="#792782", command=calculate_summary)
         self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
         self.summary_button.config(state='disabled')
 
@@ -453,19 +373,19 @@ class Rankcalculator:
         #Subject drop-down menus:
         subjects = ['English', 'Maths', 'Science', 'History', 'Computer Science']
         self.subject_one = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
-        self.subject_one.place(x=0, y=0, rely=0.440, relx=0.280, anchor=CENTER)
+        self.subject_one.place(x=0, y=0, rely=0.440, relx=0.335, anchor=CENTER)
 
         self.subject_two = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
-        self.subject_two.place(x=0, y=0, rely=0.505, relx=0.280, anchor=CENTER)
+        self.subject_two.place(x=0, y=0, rely=0.505, relx=0.335, anchor=CENTER)
 
         self.subject_three = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
-        self.subject_three.place(x=0, y=0, rely=0.565, relx=0.280, anchor=CENTER)
+        self.subject_three.place(x=0, y=0, rely=0.565, relx=0.335, anchor=CENTER)
 
         self.subject_four = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
-        self.subject_four.place(x=0, y=0, rely=0.625, relx=0.280, anchor=CENTER)
+        self.subject_four.place(x=0, y=0, rely=0.625, relx=0.335, anchor=CENTER)
 
         self.subject_five = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
-        self.subject_five.place(x=0, y=0, rely=0.690, relx=0.280, anchor=CENTER)
+        self.subject_five.place(x=0, y=0, rely=0.690, relx=0.335, anchor=CENTER)
 
 
         #Subject 1 Credits:
@@ -474,94 +394,79 @@ class Rankcalculator:
                             '20', '21', '22', '23', '24']
         self.subject_1_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                                state='readonly', justify="center")
-        self.subject_1_excellence.place(x=0, y=0, rely=0.440, relx=0.435, anchor=CENTER)
+        self.subject_1_excellence.place(x=0, y=0, rely=0.440, relx=0.490, anchor=CENTER)
 
         self.subject_1_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_1_merit.place(x=0, y=0, rely=0.440, relx=0.545, anchor=CENTER)
+        self.subject_1_merit.place(x=0, y=0, rely=0.440, relx=0.605, anchor=CENTER)
 
         self.subject_1_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_1_achieved.place(x=0, y=0, rely=0.440, relx=0.659, anchor=CENTER)
+        self.subject_1_achieved.place(x=0, y=0, rely=0.440, relx=0.712, anchor=CENTER)
 
 
         #Subject 2 Credits:
         self.subject_2_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_2_excellence.place(x=0, y=0, rely=0.505, relx=0.435, anchor=CENTER)
+        self.subject_2_excellence.place(x=0, y=0, rely=0.505, relx=0.490, anchor=CENTER)
 
         self.subject_2_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_2_merit.place(x=0, y=0, rely=0.505, relx=0.545, anchor=CENTER)
+        self.subject_2_merit.place(x=0, y=0, rely=0.505, relx=0.605, anchor=CENTER)
 
         self.subject_2_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_2_achieved.place(x=0, y=0, rely=0.505, relx=0.659, anchor=CENTER)
+        self.subject_2_achieved.place(x=0, y=0, rely=0.505, relx=0.712, anchor=CENTER)
 
 
         #Subject 3 Credits:
         self.subject_3_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_3_excellence.place(x=0, y=0, rely=0.565, relx=0.435, anchor=CENTER)
+        self.subject_3_excellence.place(x=0, y=0, rely=0.565, relx=0.490, anchor=CENTER)
 
         self.subject_3_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                  values=credits_num,
                                                  state='readonly', justify="center")
-        self.subject_3_merit.place(x=0, y=0, rely=0.565, relx=0.545, anchor=CENTER)
+        self.subject_3_merit.place(x=0, y=0, rely=0.565, relx=0.605, anchor=CENTER)
 
         self.subject_3_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                  values=credits_num,
                                                  state='readonly', justify="center")
-        self.subject_3_achieved.place(x=0, y=0, rely=0.565, relx=0.659, anchor=CENTER)
+        self.subject_3_achieved.place(x=0, y=0, rely=0.565, relx=0.712, anchor=CENTER)
 
         #Subject 4 Credits:
         self.subject_4_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                  values=credits_num,
                                                  state='readonly', justify="center")
-        self.subject_4_excellence.place(x=0, y=0, rely=0.630, relx=0.435, anchor=CENTER)
+        self.subject_4_excellence.place(x=0, y=0, rely=0.630, relx=0.490, anchor=CENTER)
 
         self.subject_4_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                             values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_4_merit.place(x=0, y=0, rely=0.630, relx=0.545, anchor=CENTER)
+        self.subject_4_merit.place(x=0, y=0, rely=0.630, relx=0.605, anchor=CENTER)
 
         self.subject_4_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                values=credits_num,
                                                state='readonly', justify="center")
-        self.subject_4_achieved.place(x=0, y=0, rely=0.630, relx=0.659, anchor=CENTER)
+        self.subject_4_achieved.place(x=0, y=0, rely=0.630, relx=0.712, anchor=CENTER)
 
 
         #Subject 5 Credits:
         self.subject_5_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                  values=credits_num,
                                                  state='readonly', justify="center")
-        self.subject_5_excellence.place(x=0, y=0, rely=0.690, relx=0.435, anchor=CENTER)
+        self.subject_5_excellence.place(x=0, y=0, rely=0.694, relx=0.490, anchor=CENTER)
 
         self.subject_5_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                             values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_5_merit.place(x=0, y=0, rely=0.690, relx=0.545, anchor=CENTER)
+        self.subject_5_merit.place(x=0, y=0, rely=0.694, relx=0.605, anchor=CENTER)
 
         self.subject_5_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                values=credits_num,
                                                state='readonly',
                                                justify="center")
-        self.subject_5_achieved.place(x=0, y=0, rely=0.690, relx=0.659, anchor=CENTER)
-
-        self.total_credits_1 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
-        self.total_credits_1.place(x=0, y=0, rely=0.440, relx=0.769, anchor=CENTER)
-
-        self.total_credits_2 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
-        self.total_credits_2.place(x=0, y=0, rely=0.505, relx=0.769, anchor=CENTER)
-
-        self.total_credits_3 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
-        self.total_credits_3.place(x=0, y=0, rely=0.565, relx=0.769, anchor=CENTER)
-
-        self.total_credits_4 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
-        self.total_credits_4.place(x=0, y=0, rely=0.630, relx=0.769, anchor=CENTER)
-
-        self.total_credits_5 = Entry(parent, width=10, font=("Helvitica", 20), state='readonly', justify="center")
-        self.total_credits_5.place(x=0, y=0, rely=0.690, relx=0.769, anchor=CENTER)
+        self.subject_5_achieved.place(x=0, y=0, rely=0.694, relx=0.712, anchor=CENTER)
 
 
 class subject_information:
@@ -586,18 +491,6 @@ class subject_information:
                                     fg="White", command=cancel_popup)
             self.no_button.place(x=0, y=0, relx=0.65, rely=0.5)
 
-        def back_home():
-
-            self.my_label.destroy()
-            self.exit_button.destroy()
-            self.home_button.destroy()
-            self.rank_calc_button.destroy()
-            self.information_button.destroy()
-            self.help_button.destroy()
-            self.subject.destroy()
-            self.done_button.destroy()
-            Loginpage(root)
-
 
         def proceed_destroy():
             root.destroy()
@@ -610,7 +503,6 @@ class subject_information:
             return
 
         def to_rank():
-            self.home_button.destroy()
             self.rank_calc_button.destroy()
             self.information_button.destroy()
             self.help_button.destroy()
@@ -635,9 +527,42 @@ class subject_information:
                                         bg="Grey", fg="White")
                 self.text_label.place(relx=0.5, rely=0.35, anchor=CENTER)
 
+        def help_button():
+
+            def delete_popup():
+                self.popup_frame.destroy()
+                self.delete_button.destroy()
+                self.exit_button.config(state="normal")
 
 
-        self.main_bg = Image.open("subjects.png")
+            self.exit_button.config(state="disabled")
+
+            self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1300, bg="#792782")
+            self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+
+            self.help_text = Label(self.popup_frame,
+                                   text="\nThe Subject Information page allows you to freely browse various level 3 subjects "
+                                        "\nto understand what each subject has to offer. "
+                                        "\n\nSimply by entering the subject of your choice and selecting the ‘ENTER’ button, "
+                                        "\nyou are given a brief description of the subject, including what it might offer to you as a student. "
+                                        "\n\nTo exit the subject, simply select the ‘X’ button and you will be taken back to the original page, "
+                                        "\nfree to choose a new subject if wanted.", font=("Helvitica", 18), bg="#792782", fg="white",
+                                   bd=0, highlightthickness=0)
+            self.help_text.place(relx=0.5, rely=0.4, anchor=CENTER)
+
+            exit_image = Image.open("red_x.png")
+            exit_image = exit_image.resize((115, 128))
+            self.exit_image_tk = ImageTk.PhotoImage(exit_image)
+
+            self.delete_button = Button(self.popup_frame,
+                                        command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                        background="#792782", relief="flat")
+            self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
+            self.delete_button.image = self.exit_image_tk
+
+
+
+        self.main_bg = Image.open("bright_info.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
         self.my_label = Label(parent, image=self.bg)
@@ -646,32 +571,35 @@ class subject_information:
         self.my_label.image = self.bg
         self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+
         self.exit_button = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3", command=message_exit)
+                                  activebackground="#792782", command=message_exit)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
-        self.home_button = Button(parent, text="Home", height=2, width=17, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3", command=back_home)
-        self.home_button.place(x=0, y=0, relx=0.189, rely=0.15, anchor='w')
-
         self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
-                                       activebackground="#a3a3a3", command=to_rank)
-        self.rank_calc_button.place(x=0, y=0, relx=0.364, rely=0.15, anchor='w')
+                                       activebackground="#792782", command=to_rank)
+        self.rank_calc_button.place(x=0, y=0, relx=0.330, rely=0.15, anchor='w')
 
         self.information_button = Button(parent, text="Subject Information", height=2, width=17, font=("Helvitica", 20),
-                                         activebackground="#a3a3a3")
-        self.information_button.place(x=0, y=0, relx=0.608, rely=0.15, anchor=CENTER)
+                                         activebackground="#792782")
+        self.information_button.place(x=0, y=0, relx=0.620, rely=0.15, anchor=CENTER)
 
-        self.help_button = Button(parent, text="Help", height=2, width=17, font=("Helvitica", 20),
-                                  activebackground="#a3a3a3")
-        self.help_button.place(x=0, y=0, relx=0.850, rely=0.15, anchor='e')
+
+        help_image = Image.open("Your4.png")
+        help_image = help_image.resize((180, 180), Image.LANCZOS)
+        self.help_image_tk = ImageTk.PhotoImage(help_image)
+
+        self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2",
+                                  background="#792782", relief="flat")
+        self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
+
 
         subject_choice = ['English', 'Science', 'Maths', 'Computer Science']
         self.subject = ttk.Combobox(parent, width=55, height=150, font=("Helvitica", 35),
                                     values=subject_choice, state="readonly", justify="center")
         self.subject.place(x=0, y=0, relheight=0.1, relx=0.5, rely=0.620, anchor=CENTER)
 
-        self.done_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#a3a3a3", command=subject_selected)
+        self.done_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=subject_selected)
         self.done_button.place(x=0, y=0, relx=0.5, rely=0.725, anchor=CENTER)
 
 
