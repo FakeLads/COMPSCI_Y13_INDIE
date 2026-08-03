@@ -512,20 +512,67 @@ class subject_information:
 
         def subject_selected():
 
-            self.description_page = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
+            self.exit_button.config(state="disabled")
+
+            selected_subject = self.subject.get()
+
+            self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
             self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
-            if self.subject == 'English':
+            exit_image = Image.open("red_x.png")
+            exit_image = exit_image.resize((115, 128))
+            self.exit_image_tk = ImageTk.PhotoImage(exit_image)
 
-                self.text_label = Label(self.description_page, text="The subject", font=("Helvitica", 50),
-                                    bg="Grey", fg="White")
-                self.text_label.place(relx=0.5, rely=0.35, anchor=CENTER)
+            def delete_popup():
+                self.description_page.destroy()
+                self.english_label.destroy()
+                self.vis_english_label.destroy()
+                self.exit_button.config(state="normal")
 
-            if self.subject == 'Computer Science':
+            if selected_subject == 'Written English':
+                eng_image = Image.open("writ_eng.png")
+                eng_image = eng_image.resize((600, 800), Image.LANCZOS)
+                self.eng_image_tk = ImageTk.PhotoImage(eng_image)
 
-                self.text_label = Label(self.description_page, text="The subject", font=("Helvitica", 50),
-                                        bg="Grey", fg="White")
-                self.text_label.place(relx=0.5, rely=0.35, anchor=CENTER)
+                self.english_label = Label(parent, image=self.eng_image_tk, background="white")
+                self.english_label.image = self.eng_image_tk
+                self.english_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+                self.delete_button = Button(self.description_page,
+                                            command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                            background="white", relief="flat")
+                self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
+                self.delete_button.image = self.exit_image_tk
+
+            if selected_subject == 'Visual English':
+                vis_eng_image = Image.open("vis_eng.png")
+                vis_eng_image = vis_eng_image.resize((600, 800), Image.LANCZOS)
+                self.vis_eng_image_tk = ImageTk.PhotoImage(vis_eng_image)
+
+                self.vis_english_label = Label(parent, image=self.vis_eng_image_tk, background="white")
+                self.vis_english_label.image = self.eng_image_tk
+                self.vis_english_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+                self.delete_button = Button(self.description_page,
+                                            command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                            background="white", relief="flat")
+                self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
+                self.delete_button.image = self.exit_image_tk
+
+            if selected_subject == 'Music Studies':
+                mus_image = Image.open("mus.png")
+                mus_image = mus_image.resize((600, 800), Image.LANCZOS)
+                self.mus_image_tk = ImageTk.PhotoImage(mus_image)
+
+                self.mus_label = Label(parent, image=self.mus_image_tk, background="white")
+                self.mus_label.image = self.eng_image_tk
+                self.mus_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+                self.delete_button = Button(self.description_page,
+                                            command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                            background="white", relief="flat")
+                self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
+                self.delete_button.image = self.exit_image_tk
 
         def help_button():
 
@@ -594,7 +641,7 @@ class subject_information:
         self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
 
-        subject_choice = ['English', 'Science', 'Maths', 'Computer Science']
+        subject_choice = ['Written English', 'Visual English', 'Maths', 'Music Studies']
         self.subject = ttk.Combobox(parent, width=55, height=150, font=("Helvitica", 35),
                                     values=subject_choice, state="readonly", justify="center")
         self.subject.place(x=0, y=0, relheight=0.1, relx=0.5, rely=0.620, anchor=CENTER)
