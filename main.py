@@ -334,21 +334,21 @@ class Rankcalculator:
         self.my_label.place(x=0, y=0, relwidth=1,relheight=1)
 
         self.exit_button = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
-                                  activebackground="Grey", command=message_exit)
+                                  activebackground="Grey", bg="White", command=message_exit)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
         self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
-                                activebackground="#792782")
-        self.rank_calc_button.place(x=0, y=0, relx=0.330, rely=0.15, anchor='w')
+                                activebackground="#792782", bg="#a8a8a8", state="disabled")
+        self.rank_calc_button.place(x=0, y=0, relx=0.330, rely=0.17, anchor='w')
 
         self.information_button = Button(parent, text="Subject Information", height=2, width=17, font=("Helvitica", 20),
-                                         activebackground="#792782", command=to_subject)
-        self.information_button.place(x=0, y=0, relx=0.620, rely=0.15, anchor=CENTER)
+                                         activebackground="#792782", bg="White", command=to_subject)
+        self.information_button.place(x=0, y=0, relx=0.620, rely=0.17, anchor=CENTER)
 
 
 
         help_image = Image.open("Your4.png")
-        help_image = help_image.resize((180, 180), Image.LANCZOS)
+        help_image = help_image.resize((140, 140), Image.LANCZOS)
         self.help_image_tk = ImageTk.PhotoImage(help_image)
 
         self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2", background="#792782", relief="flat")
@@ -457,18 +457,18 @@ class Rankcalculator:
         self.subject_5_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                  values=credits_num,
                                                  state='readonly', justify="center")
-        self.subject_5_excellence.place(x=0, y=0, rely=0.694, relx=0.490, anchor=CENTER)
+        self.subject_5_excellence.place(x=0, y=0, rely=0.693, relx=0.490, anchor=CENTER)
 
         self.subject_5_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                             values=credits_num,
                                             state='readonly', justify="center")
-        self.subject_5_merit.place(x=0, y=0, rely=0.694, relx=0.605, anchor=CENTER)
+        self.subject_5_merit.place(x=0, y=0, rely=0.693, relx=0.605, anchor=CENTER)
 
         self.subject_5_achieved = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                values=credits_num,
                                                state='readonly',
                                                justify="center")
-        self.subject_5_achieved.place(x=0, y=0, rely=0.694, relx=0.712, anchor=CENTER)
+        self.subject_5_achieved.place(x=0, y=0, rely=0.693, relx=0.712, anchor=CENTER)
 
 
 class subject_information:
@@ -514,19 +514,21 @@ class subject_information:
 
         def subject_selected():
 
-            self.exit_button.config(state="disabled")
-
-            selected_subject = self.subject.get()
-
-            self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
-            self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+            selected_subject = self.subject.get().strip()
 
             exit_image = Image.open("red_x.png")
             exit_image = exit_image.resize((115, 128))
             self.exit_image_tk = ImageTk.PhotoImage(exit_image)
 
+            if selected_subject == "Select A Subject":
+                messagebox.showerror("Error", "Please select a subject.")
+                return
 
             if selected_subject == 'Written English':
+                self.exit_button.config(state="disabled")
+
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
                 def delete_popup_wri():
                     self.exit_button.config(state="normal")
@@ -548,6 +550,10 @@ class subject_information:
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Visual English':
+                self.exit_button.config(state="disabled")
+
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
                 def delete_popup_vis():
                     self.exit_button.config(state="normal")
@@ -569,6 +575,10 @@ class subject_information:
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Music Studies':
+                self.exit_button.config(state="disabled")
+
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
                 def delete_popup_mus():
                     self.exit_button.config(state="normal")
@@ -590,6 +600,10 @@ class subject_information:
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Biology':
+                self.exit_button.config(state="disabled")
+
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
                 def delete_popup_bio():
                     self.exit_button.config(state="normal")
@@ -611,6 +625,10 @@ class subject_information:
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Chemistry':
+                self.exit_button.config(state="disabled")
+
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
                 def delete_popup_chem():
                     self.exit_button.config(state="normal")
@@ -632,6 +650,10 @@ class subject_information:
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Physics':
+                self.exit_button.config(state="disabled")
+
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
                 def delete_popup_phy():
                     self.exit_button.config(state="normal")
@@ -653,6 +675,10 @@ class subject_information:
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Statistics':
+                self.exit_button.config(state="disabled")
+
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
                 def delete_popup_stat():
                     self.exit_button.config(state="normal")
@@ -707,9 +733,6 @@ class subject_information:
             self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
-        def activate_search():
-            self.search_button.config(state="normal")
-
         self.main_bg = Image.open("2.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
@@ -721,20 +744,20 @@ class subject_information:
 
 
         self.exit_button = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
-                                  activebackground="#792782", command=message_exit)
+                                  activebackground="#792782", bg="white", command=message_exit)
         self.exit_button.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
         self.rank_calc_button = Button(parent, text="Rank Score Calculator", height=2, width=17, font=("Helvitica", 20),
-                                       activebackground="#792782", command=to_rank)
-        self.rank_calc_button.place(x=0, y=0, relx=0.330, rely=0.15, anchor='w')
+                                       activebackground="#792782", bg="White", command=to_rank)
+        self.rank_calc_button.place(x=0, y=0, relx=0.330, rely=0.17, anchor='w')
 
         self.information_button = Button(parent, text="Subject Information", height=2, width=17, font=("Helvitica", 20),
-                                         activebackground="#792782")
-        self.information_button.place(x=0, y=0, relx=0.620, rely=0.15, anchor=CENTER)
+                                         activebackground="#792782", bg="#a8a8a8", state="disabled")
+        self.information_button.place(x=0, y=0, relx=0.620, rely=0.17, anchor=CENTER)
 
 
         help_image = Image.open("Your4.png")
-        help_image = help_image.resize((180, 180), Image.LANCZOS)
+        help_image = help_image.resize((140, 140), Image.LANCZOS)
         self.help_image_tk = ImageTk.PhotoImage(help_image)
 
         self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2",
@@ -746,15 +769,16 @@ class subject_information:
         self.subject = ttk.Combobox(parent, width=55, height=150, font=("Helvitica", 35),
                                     values=subject_choice, state="readonly", justify="center")
         self.subject.place(x=0, y=0, relheight=0.1, relx=0.5, rely=0.620, anchor=CENTER)
+        self.subject.set("Select A Subject")
 
-        self.search_button = Button(parent, text="SEARCH", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=subject_selected, state="disabled")
-        self.search_button.place(x=0, y=0, relx=0.4, rely=0.725, anchor=CENTER)
+        self.search_button = Button(parent, text="SEARCH", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=subject_selected, state="normal")
+        self.search_button.place(x=0, y=0, relx=0.5, rely=0.725, anchor=CENTER)
 
-        self.activate_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=activate_search,)
-        self.activate_button.place(x=0, y=0, relx=0.7, rely=0.725, anchor=CENTER)
 
 
 
 app = Loginpage(root)
+
+root.attributes("-fullscreen", True)
 
 root.mainloop()
