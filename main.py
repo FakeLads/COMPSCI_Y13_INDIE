@@ -56,7 +56,7 @@ class Loginpage:
             Rankcalculator(root)
 
 
-        self.bg = Image.open("home_bright.png")
+        self.bg = Image.open("1.png")
         self.resized_image = self.bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
 
@@ -150,23 +150,23 @@ class Rankcalculator:
             sub_5 = self.subject_five.get().strip()
 
             if not sub_1:
-                messagebox.showerror("ERROR", "Your Are Missing Subject 1")
+                messagebox.showerror("ERROR", "You Are Missing Subject 1")
                 return
 
             if not sub_2:
-                messagebox.showerror("ERROR", "Your Are Missing Subject 2")
+                messagebox.showerror("ERROR", "You Are Missing Subject 2")
                 return
 
             if not sub_3:
-                messagebox.showerror("ERROR", "Your Are Missing Subject 3")
+                messagebox.showerror("ERROR", "You Are Missing Subject 3")
                 return
 
             if not sub_4:
-                messagebox.showerror("ERROR", "Your Are Missing Subject 4")
+                messagebox.showerror("ERROR", "You Are Missing Subject 4")
                 return
 
             if not sub_5:
-                messagebox.showerror("ERROR", "Your Are Missing Subject 5")
+                messagebox.showerror("ERROR", "You Are Missing Subject 5")
                 return
 
             else:
@@ -371,7 +371,9 @@ class Rankcalculator:
 
 
         #Subject drop-down menus:
-        subjects = ['English', 'Maths', 'Science', 'History', 'Computer Science']
+        subjects = ['Visual English', 'Written English', 'Biology', 'Chemistry', 'Physics', 'Statistics', 'Calculus',
+                    'History', 'Classics', 'Music Studies', 'Geography', 'Art', 'Computer Science', 'Media Studies',
+                    'Economics', 'Food', 'Dance', 'Theatre Tech', 'Making Music', 'Photography']
         self.subject_one = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
         self.subject_one.place(x=0, y=0, rely=0.440, relx=0.335, anchor=CENTER)
 
@@ -523,14 +525,15 @@ class subject_information:
             exit_image = exit_image.resize((115, 128))
             self.exit_image_tk = ImageTk.PhotoImage(exit_image)
 
-            def delete_popup():
-                self.description_page.destroy()
-                self.english_label.destroy()
-                self.vis_english_label.destroy()
-                self.exit_button.config(state="normal")
 
             if selected_subject == 'Written English':
-                eng_image = Image.open("writ_eng.png")
+
+                def delete_popup_wri():
+                    self.exit_button.config(state="normal")
+                    self.description_page.destroy()
+                    self.english_label.destroy()
+
+                eng_image = Image.open("vis_eng.png")
                 eng_image = eng_image.resize((600, 800), Image.LANCZOS)
                 self.eng_image_tk = ImageTk.PhotoImage(eng_image)
 
@@ -539,40 +542,137 @@ class subject_information:
                 self.english_label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
                 self.delete_button = Button(self.description_page,
-                                            command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                            command=delete_popup_wri, image=self.exit_image_tk, cursor="hand2",
                                             background="white", relief="flat")
                 self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Visual English':
-                vis_eng_image = Image.open("vis_eng.png")
+
+                def delete_popup_vis():
+                    self.exit_button.config(state="normal")
+                    self.description_page.destroy()
+                    self.vis_english_label.destroy()
+
+                vis_eng_image = Image.open("writ_eng.png")
                 vis_eng_image = vis_eng_image.resize((600, 800), Image.LANCZOS)
                 self.vis_eng_image_tk = ImageTk.PhotoImage(vis_eng_image)
 
                 self.vis_english_label = Label(parent, image=self.vis_eng_image_tk, background="white")
-                self.vis_english_label.image = self.eng_image_tk
+                self.vis_english_label.image = self.vis_eng_image_tk
                 self.vis_english_label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
                 self.delete_button = Button(self.description_page,
-                                            command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                            command=delete_popup_vis, image=self.exit_image_tk, cursor="hand2",
                                             background="white", relief="flat")
                 self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
                 self.delete_button.image = self.exit_image_tk
 
             if selected_subject == 'Music Studies':
+
+                def delete_popup_mus():
+                    self.exit_button.config(state="normal")
+                    self.description_page.destroy()
+                    self.mus_label.destroy()
+
                 mus_image = Image.open("mus.png")
                 mus_image = mus_image.resize((600, 800), Image.LANCZOS)
                 self.mus_image_tk = ImageTk.PhotoImage(mus_image)
 
                 self.mus_label = Label(parent, image=self.mus_image_tk, background="white")
-                self.mus_label.image = self.eng_image_tk
+                self.mus_label.image = self.mus_image_tk
                 self.mus_label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
                 self.delete_button = Button(self.description_page,
-                                            command=delete_popup, image=self.exit_image_tk, cursor="hand2",
+                                            command=delete_popup_mus, image=self.exit_image_tk, cursor="hand2",
                                             background="white", relief="flat")
                 self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
                 self.delete_button.image = self.exit_image_tk
+
+            if selected_subject == 'Biology':
+
+                def delete_popup_bio():
+                    self.exit_button.config(state="normal")
+                    self.description_page.destroy()
+                    self.bio_label.destroy()
+
+                bio_image = Image.open("bio.png")
+                bio_image = bio_image.resize((600, 800), Image.LANCZOS)
+                self.bio_image_tk = ImageTk.PhotoImage(bio_image)
+
+                self.bio_label = Label(parent, image=self.bio_image_tk, background="white")
+                self.bio_label.image = self.bio_image_tk
+                self.bio_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+                self.delete_button = Button(self.description_page,
+                                            command=delete_popup_bio, image=self.exit_image_tk, cursor="hand2",
+                                            background="white", relief="flat")
+                self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
+                self.delete_button.image = self.exit_image_tk
+
+            if selected_subject == 'Chemistry':
+
+                def delete_popup_chem():
+                    self.exit_button.config(state="normal")
+                    self.description_page.destroy()
+                    self.chem_label.destroy()
+
+                chem_image = Image.open("chem.png")
+                chem_image = chem_image.resize((600, 800), Image.LANCZOS)
+                self.chem_image_tk = ImageTk.PhotoImage(chem_image)
+
+                self.chem_label = Label(parent, image=self.chem_image_tk, background="white")
+                self.chem_label.image = self.chem_image_tk
+                self.chem_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+                self.delete_button = Button(self.description_page,
+                                            command=delete_popup_chem, image=self.exit_image_tk, cursor="hand2",
+                                            background="white", relief="flat")
+                self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
+                self.delete_button.image = self.exit_image_tk
+
+            if selected_subject == 'Physics':
+
+                def delete_popup_phy():
+                    self.exit_button.config(state="normal")
+                    self.description_page.destroy()
+                    self.phy_label.destroy()
+
+                phy_image = Image.open("phy.png")
+                phy_image = phy_image.resize((600, 800), Image.LANCZOS)
+                self.phy_image_tk = ImageTk.PhotoImage(phy_image)
+
+                self.phy_label = Label(parent, image=self.phy_image_tk, background="white")
+                self.phy_label.image = self.phy_image_tk
+                self.phy_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+                self.delete_button = Button(self.description_page,
+                                            command=delete_popup_phy, image=self.exit_image_tk, cursor="hand2",
+                                            background="white", relief="flat")
+                self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
+                self.delete_button.image = self.exit_image_tk
+
+            if selected_subject == 'Statistics':
+
+                def delete_popup_stat():
+                    self.exit_button.config(state="normal")
+                    self.description_page.destroy()
+                    self.stats_label.destroy()
+
+                stats_image = Image.open("stats.png")
+                stats_image = stats_image.resize((600, 800), Image.LANCZOS)
+                self.stats_image_tk = ImageTk.PhotoImage(stats_image)
+
+                self.stats_label = Label(parent, image=self.stats_image_tk, background="white")
+                self.stats_label.image = self.stats_image_tk
+                self.stats_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+                self.delete_button = Button(self.description_page,
+                                            command=delete_popup_stat, image=self.exit_image_tk, cursor="hand2",
+                                            background="white", relief="flat")
+                self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
+                self.delete_button.image = self.exit_image_tk
+
 
         def help_button():
 
@@ -607,9 +707,10 @@ class subject_information:
             self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
+        def activate_search():
+            self.search_button.config(state="normal")
 
-
-        self.main_bg = Image.open("bright_info.png")
+        self.main_bg = Image.open("2.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
         self.my_label = Label(parent, image=self.bg)
@@ -641,13 +742,16 @@ class subject_information:
         self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
 
-        subject_choice = ['Written English', 'Visual English', 'Maths', 'Music Studies']
+        subject_choice = ['Written English', 'Visual English', 'Biology', 'Physics', 'Chemistry', 'Statistics']
         self.subject = ttk.Combobox(parent, width=55, height=150, font=("Helvitica", 35),
                                     values=subject_choice, state="readonly", justify="center")
         self.subject.place(x=0, y=0, relheight=0.1, relx=0.5, rely=0.620, anchor=CENTER)
 
-        self.done_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=subject_selected)
-        self.done_button.place(x=0, y=0, relx=0.5, rely=0.725, anchor=CENTER)
+        self.search_button = Button(parent, text="SEARCH", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=subject_selected, state="disabled")
+        self.search_button.place(x=0, y=0, relx=0.4, rely=0.725, anchor=CENTER)
+
+        self.activate_button = Button(parent, text="DONE", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=activate_search,)
+        self.activate_button.place(x=0, y=0, relx=0.7, rely=0.725, anchor=CENTER)
 
 
 
