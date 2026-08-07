@@ -22,64 +22,76 @@ branch_list = []
 class Loginpage:
     def __init__(self, parent):
 
+        # The defined function that allows users to exit the program
         def message_exit():
 
+            # Disables the exit button
             self.button_exit.config(state="disabled")
 
+            # Creates the frame popup
             self.popup_frame = Frame(parent, borderwidth=3, relief="solid", height=500, width=1200, bg="Grey")
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
+            # Displays the text asking the user
             self.text_label = Label(self.popup_frame, text="PLEASE CONFIRM YOUR EXIT", font=("Helvitica", 50), bg="Grey", fg="White")
             self.text_label.place(relx=0.5, rely=0.25, anchor=CENTER)
 
+            # The Yes Button. If the user wants to leave they press this
             self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvitica", 20), bg="Dark Green", fg="White", command=proceed_destroy)
             self.yes_button.place(x=0, y=0, relx=0.1, rely=0.5)
 
+            # The No Button. If the user does not wish to leave, they press this and return to the program
             self.no_button = Button(self.popup_frame, height=5, width=20, text="NO", font=("Helvitica", 20), bg="Red", fg="White", command=cancel_popup)
             self.no_button.place(x=0, y=0, relx=0.65, rely=0.5)
 
+        # Stops the whole program/destroys it
         def proceed_destroy():
             root.destroy()
 
+        # Defined function that is activated when the user selects 'No'
         def cancel_popup():
-            self.popup_frame.destroy()
-            self.yes_button.destroy()
-            self.no_button.destroy()
-            self.button_exit.config(state="normal")
-            return
+            self.popup_frame.destroy()  # Destroys the pop-up frame
+            self.yes_button.destroy()  # Destroys the Yes button
+            self.no_button.destroy()  # Destroys the No Button
+            self.button_exit.config(state="normal")  # Reverts the exit button back to normal making it usable
+            return  # Reverts back to state it was before
 
+        # When the user selects the start button
         def go_button():
             self.my_label.destroy()
             self.my_frame.destroy()
             self.button_go.destroy()
             self.button_exit.destroy()
-            Rankcalculator(root)
+            Rankcalculator(root) # Displays the rank score calculator page while the code before destroys all the elements before
 
 
-        self.bg = Image.open("1.png")
-        self.resized_image = self.bg.resize((1920, 1080), Image.LANCZOS)
+        self.bg = Image.open("1.png") # self.bg is equal to bright_home.png
+        self.resized_image = self.bg.resize((1920, 1080), Image.LANCZOS) # self.resized_image means if this variable is called the image must resize to the following measurements and display at a high quality
         self.bg = ImageTk.PhotoImage(self.resized_image)
 
-        self.my_label = Label(parent, image=self.bg)
+        self.my_label = Label(parent, image=self.bg) # The label hosts the image, allowing it to be displayed
         self.my_label.image=self.bg
         self.my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         self.my_frame = Frame(parent, height=300, width=1000, bg="#792782")
         self.my_frame.place(x=0, y=0, relx=0.5, rely=0.6, anchor=CENTER)
 
+        # Button that takes user to rank score calculator page
         self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvitica", 20),
                                 activebackground="#792782", command=go_button)
         self.button_go.grid(row=2, column=2, pady=20, columnspan=2)
 
+        # Exit button that allows the user to leave if they wish
         self.button_exit = Button(parent, text="EXIT", height=2, width=15, font=("Helvitica", 20),
                                   activebackground="#792782", command=message_exit)
         self.button_exit.place(relx=1, rely=1, x=-20, y=-5, anchor="se")
 
 
-
+# The rank score calculator page
 class Rankcalculator:
     def __init__(self, parent):
 
+        # The same defined function that is called when the user presses the exit button, displaying a exit popup
         def message_exit():
 
             self.exit_button.config(state="disabled")
@@ -109,8 +121,10 @@ class Rankcalculator:
             self.exit_button.config(state="normal")
             return
 
+        # Takes user to Subject Information page
         def to_subject():
 
+            # Destroys all widgets and elements within the rank score calculator page
             self.rank_calc_button.destroy()
             self.information_button.destroy()
             self.help_button.destroy()
@@ -139,19 +153,22 @@ class Rankcalculator:
             self.subject_3_excellence.destroy()
             self.subject_4_excellence.destroy()
             self.subject_5_excellence.destroy()
-            subject_information(root)
+            subject_information(root) # Calls upon the subject information page to appear
 
+        # Defined function that checks if the user has all subjects and disables and enables certain widgets
         def activate_button():
 
+            # Defined variables that check to see if the subject drop down menus have been selected
             sub_1 = self.subject_one.get().strip()
             sub_2 = self.subject_two.get().strip()
             sub_3 = self.subject_three.get().strip()
             sub_4 = self.subject_four.get().strip()
             sub_5 = self.subject_five.get().strip()
 
+            # If the does not have subjects 1 to 5 one of five error messages will appear asking the user to repair their issues
             if not sub_1:
                 messagebox.showerror("ERROR", "You Are Missing Subject 1")
-                return
+                return # Reverts back to original state
 
             if not sub_2:
                 messagebox.showerror("ERROR", "You Are Missing Subject 2")
@@ -169,6 +186,7 @@ class Rankcalculator:
                 messagebox.showerror("ERROR", "You Are Missing Subject 5")
                 return
 
+            # If the user does enter in all 5 subjects then the summary button will become available and all drop down menus will become unavailable
             else:
                 self.summary_button.config(state="normal")
 
@@ -202,9 +220,10 @@ class Rankcalculator:
                 self.subject_5_merit.config(state="disabled")
                 self.subject_5_achieved.config(state="disabled")
 
-
+        # Calculates the total rank score from total amounts of credits entered into the table
         def calculate_summary():
 
+            # Splits each subject into rows
             subject_rows = [
                 (self.subject_1_excellence, self.subject_1_merit, self.subject_1_achieved),
                 (self.subject_2_excellence, self.subject_2_merit, self.subject_2_achieved),
@@ -214,15 +233,19 @@ class Rankcalculator:
 
             ]
 
+            # Sets the user's starting score to 0, from where it can be increased
             total_score = 0
 
+            # Cycles through the list of subject rows
             for exc_cb, mer_cb, ach_cb in subject_rows:
-                exc_val = int(exc_cb.get() if exc_cb.get() else 0)
-                mer_val = int(mer_cb.get() if mer_cb.get() else 0)
+                exc_val = int(exc_cb.get() if exc_cb.get() else 0) # Reads the selected values from the dropdown menus. If the widget is empty, the system will return value as 0 in order to prevent the program from crashing
+                mer_val = int(mer_cb.get() if mer_cb.get() else 0) # The int() converts the string from the dropdown menu into a mathematical value to it can be calculated
                 ach_val = int(ach_cb.get() if ach_cb.get() else 0)
 
+                # Calculates the total amount of points earned according to how much a credit is multiplied for NCEA, and adds that to the total score
                 total_score += (exc_val * 4) + (mer_val * 3) + (ach_val * 2)
 
+            # Deletes the summary popup
             def delete_summary():
                 self.summary_frame.destroy()
                 self.summary_label.destroy()
@@ -262,30 +285,33 @@ class Rankcalculator:
 
                 self.exit_button.config(state="normal")
 
-                #total_score = 0
-
+            # The exit button is disabled until the 'X' button is selected
             self.exit_button.config(state="disabled")
 
+            # Creates a small frame popup, for all the elements to placed upon
             self.summary_frame = Frame(parent, borderwidth=3, relief="solid", height=650, width=1000, bg="Grey")
             self.summary_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
+            # Label that holds text telling the user their rank score is...
             self.summary_label = Label(self.summary_frame, text=f"Your Rank Score is:",
                                        font=("Helvitica", 50), bg="Grey", fg="White")
             self.summary_label.place(relx=0.5, rely=0.35, anchor=CENTER)
 
+            # The label will print a large value of what the user got for their total rank score
             self.value_label = Label(self.summary_frame, text=f"{total_score}", font=("helvitica", 80, "bold"), bg="Grey", fg="White")
             self.value_label.place(relx=0.5, rely=0.6, anchor=CENTER)
 
-            exit_image = Image.open("red_x.png")
-            exit_image = exit_image.resize((115, 128))
+            exit_image = Image.open("red_x.png")  # The exit_image variable equates to the red x png
+            exit_image = exit_image.resize((115, 128))  # Forces the image to resize according to the following measurements
             self.exit_image_tk = ImageTk.PhotoImage(exit_image)
 
+            # A button that hosts the red X image
             self.delete_button = Button(self.summary_frame,
                                         command=delete_summary, image=self.exit_image_tk, cursor="hand2", background="Grey", relief="flat")
             self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
-
+        # A defined function that displays a brief help popup frame
         def help_button():
 
             def delete_popup():
@@ -295,11 +321,12 @@ class Rankcalculator:
                 self.exit_button.config(state="normal")
 
 
-            self.exit_button.config(state="disabled")
+            self.exit_button.config(state="disabled") # The exit button becomes unavailable as a means to not cause any errors
 
-            self.popup_frame = Frame(parent, borderwidth=5, relief="solid", height=650, width=1300, bg="#792782")
+            self.popup_frame = Frame(parent, borderwidth=5, relief="solid", height=650, width=1300, bg="#792782")  # A popup frame used to host all elements needed for the help section
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
+            # A label that hosts all the text that explains the rank score calculator
             self.help_text = Label(self.popup_frame, text="\nCurious to discover the progress towards entry into University?"
                                                           " \nBy using the rank score calculator you are able to efficiently and effectively calculate your total rank score"
                                                           " \nfrom your total accumulated credits throughout your five subjects."
@@ -309,10 +336,10 @@ class Rankcalculator:
                                                           "\n\nOnce you have entered in all necessary values, select the “DONE” button. "
                                                           "\nThis will activate the ‘SUMMARY’, permitting you to see your total rank score without any interruptions."
                                                           "\n\nOnce you finished, select the ‘X’ button where you will be taken back to the original screen.", font=("Helvitica", 16), bg="#792782", fg="white",
-                                   bd=0, highlightthickness=0)
+                                   bd=0, highlightthickness=0) # The \n is used to create a new line that allows the text to move to the next space as a means to not go beyond the grid
             self.help_text.place(relx=0.5, rely=0.4, anchor=CENTER)
 
-
+            # A repeat of the same code used to create the red X image before
             exit_image = Image.open("red_x.png")
             exit_image = exit_image.resize((115, 128))
             self.exit_image_tk = ImageTk.PhotoImage(exit_image)
@@ -323,7 +350,7 @@ class Rankcalculator:
             self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
-
+        # Assigns the background for the rank score calculator to the self.main_bg variable. Similar to the class before which uses the same code
         self.main_bg = Image.open("bright_cal.png")
         self.resized_image = self.main_bg.resize((1920, 1080), Image.LANCZOS)
         self.bg = ImageTk.PhotoImage(self.resized_image)
@@ -355,28 +382,31 @@ class Rankcalculator:
         self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
 
-
+        # A frame that hosts the bottom two buttons being the Done button and the Summary button
         self.outer_frame = Frame(parent, height=130, width=1300, bg="#792782")
         self.outer_frame.pack_propagate(False)
         self.outer_frame.place(x=0, y=5, relx=0.5, rely=0.96, anchor='s')
 
+        # The Done button is used to confirm the users credit values entered into the table
         self.done_button = Button(self.outer_frame, text="DONE", height=4, width=20, font=("Helvitica", 20),
                                   activebackground="#792782", command=activate_button)
         self.done_button.place(x=10, y=-10, relx=0, rely=0.5, anchor="w")
 
+        # Made available after the user selects the Done button. Once selected the user will be shown their rank score
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvitica", 20),
                                      activebackground="#792782", command=calculate_summary)
         self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
-        self.summary_button.config(state='disabled')
+        self.summary_button.config(state='disabled') # Button begins disabled
 
 
-        #Subject drop-down menus:
+        #Subject drop-down menus list:
         subjects = ['Visual English', 'Written English', 'Biology', 'Chemistry', 'Physics', 'Statistics', 'Calculus',
                     'History', 'Classics', 'Music Studies', 'Geography', 'Art', 'Computer Science', 'Media Studies',
                     'Economics', 'Food', 'Dance', 'Theatre Tech', 'Making Music', 'Photography']
-        self.subject_one = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
+        self.subject_one = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center") # Each of the comboboxes is a dropdrop down menu used by users to select their subjects
         self.subject_one.place(x=0, y=0, rely=0.440, relx=0.335, anchor=CENTER)
 
+        # Values of the comboboxes equal to the subjects ist above
         self.subject_two = ttk.Combobox(parent, font=("Helvitica", 20), values=subjects, state='readonly', justify="center")
         self.subject_two.place(x=0, y=0, rely=0.505, relx=0.335, anchor=CENTER)
 
@@ -390,13 +420,14 @@ class Rankcalculator:
         self.subject_five.place(x=0, y=0, rely=0.690, relx=0.335, anchor=CENTER)
 
 
-        #Subject 1 Credits:
+        #Values for credits from 0 to 24. These are the options users can select from
         credits_num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                             '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
                             '20', '21', '22', '23', '24']
+        # Subject 1 credit boxes:
         self.subject_1_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
-                                               state='readonly', justify="center")
-        self.subject_1_excellence.place(x=0, y=0, rely=0.440, relx=0.490, anchor=CENTER)
+                                               state='readonly', justify="center") # The comboboxes here hold all the numbers 0 to 24 for the total amount of credits an individual score.
+        self.subject_1_excellence.place(x=0, y=0, rely=0.440, relx=0.490, anchor=CENTER) # Every combobox for subject 1 has the relative Y-axis value of 0.440 as they all have the same height
 
         self.subject_1_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
@@ -407,10 +438,10 @@ class Rankcalculator:
         self.subject_1_achieved.place(x=0, y=0, rely=0.440, relx=0.712, anchor=CENTER)
 
 
-        #Subject 2 Credits:
+        #Subject 2 credit boxes:
         self.subject_2_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
-                                            state='readonly', justify="center")
-        self.subject_2_excellence.place(x=0, y=0, rely=0.505, relx=0.490, anchor=CENTER)
+                                            state='readonly', justify="center") # Like the comboboxes before subject 2 and beyond follow the same structuring, with slight differences made to the placement.
+        self.subject_2_excellence.place(x=0, y=0, rely=0.505, relx=0.490, anchor=CENTER) # The placement of each box to the Y-axis is the same, but as can be seen the relative X-axis follows the same values as the subject 1 boxes.
 
         self.subject_2_merit = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
@@ -421,7 +452,7 @@ class Rankcalculator:
         self.subject_2_achieved.place(x=0, y=0, rely=0.505, relx=0.712, anchor=CENTER)
 
 
-        #Subject 3 Credits:
+        #Subject 3 credit boxes:
         self.subject_3_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20), values=credits_num,
                                             state='readonly', justify="center")
         self.subject_3_excellence.place(x=0, y=0, rely=0.565, relx=0.490, anchor=CENTER)
@@ -436,7 +467,7 @@ class Rankcalculator:
                                                  state='readonly', justify="center")
         self.subject_3_achieved.place(x=0, y=0, rely=0.565, relx=0.712, anchor=CENTER)
 
-        #Subject 4 Credits:
+        #Subject 4 credit boxes:
         self.subject_4_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                  values=credits_num,
                                                  state='readonly', justify="center")
@@ -453,7 +484,7 @@ class Rankcalculator:
         self.subject_4_achieved.place(x=0, y=0, rely=0.630, relx=0.712, anchor=CENTER)
 
 
-        #Subject 5 Credits:
+        #Subject 5 credit boxes:
         self.subject_5_excellence = ttk.Combobox(parent, width=10, height=10, font=("Helvitica", 20),
                                                  values=credits_num,
                                                  state='readonly', justify="center")
@@ -470,10 +501,11 @@ class Rankcalculator:
                                                justify="center")
         self.subject_5_achieved.place(x=0, y=0, rely=0.693, relx=0.712, anchor=CENTER)
 
-
+# The Subject Information page/class
 class subject_information:
    def __init__(self, parent):
 
+        # Defines the exit buttons function
         def message_exit():
 
             self.exit_button.config(state="disabled")
@@ -512,43 +544,55 @@ class subject_information:
             self.exit_button.destroy()
             Rankcalculator(root)
 
+        # Defined function for the subject selection combobox
         def subject_selected():
 
+            # Retrives the variable selected from the combobox
             selected_subject = self.subject.get().strip()
 
             exit_image = Image.open("red_x.png")
             exit_image = exit_image.resize((115, 128))
             self.exit_image_tk = ImageTk.PhotoImage(exit_image)
 
+            # Because the combobox holds the default text: "Select A Subject", if the user chooses to proceed they will be stopped and met with an error message
             if selected_subject == "Select A Subject":
+                messagebox.showerror("Error", "Please select a subject.") # The error message popup
+                return
+
+            # If in some instance that the combobox becomes blank with no text within, the same error message will appear informing the user to select a subject
+            if not selected_subject:
                 messagebox.showerror("Error", "Please select a subject.")
                 return
 
+            # If the user selects Written English, this if statement will be activated and processed
             if selected_subject == 'Written English':
-                self.exit_button.config(state="disabled")
+                self.exit_button.config(state="disabled") # Exit button will be disabled until the user exits the popup
 
-                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white")
-                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+                self.description_page = Frame(parent, borderwidth=3, relief="solid", height=850, width=850, bg="white") # A frame that holds the image of the subject the user selected
+                self.description_page.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER) # Specifically places the frame in the middle of the screen, so the image is the centre of the users attention
 
+                # Defines a function that will delete the popup frame if activated
                 def delete_popup_wri():
-                    self.exit_button.config(state="normal")
-                    self.description_page.destroy()
-                    self.english_label.destroy()
+                    self.exit_button.config(state="normal") # Exit button becomes usable
+                    self.description_page.destroy() # Destroys frame
+                    self.english_label.destroy() # Destroys the label holding the image
 
-                eng_image = Image.open("vis_eng.png")
-                eng_image = eng_image.resize((600, 800), Image.LANCZOS)
+                eng_image = Image.open("vis_eng.png") # Assigns the variable to the specific image
+                eng_image = eng_image.resize((600, 800), Image.LANCZOS) # Resizes to fit within the smaller frame while still having good quality due to the 'Image.LANCZOS'
                 self.eng_image_tk = ImageTk.PhotoImage(eng_image)
 
-                self.english_label = Label(parent, image=self.eng_image_tk, background="white")
+                self.english_label = Label(parent, image=self.eng_image_tk, background="white") # The label holding the image
                 self.english_label.image = self.eng_image_tk
-                self.english_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+                self.english_label.place(relx=0.5, rely=0.5, anchor=CENTER) # Places the label directly in the center of the frame
 
+                # Defines the delete button that uses an 'X' image as the button.
                 self.delete_button = Button(self.description_page,
                                             command=delete_popup_wri, image=self.exit_image_tk, cursor="hand2",
-                                            background="white", relief="flat")
+                                            background="white", relief="flat") # Assigned the command to destroy the frame and label containing the image
                 self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
                 self.delete_button.image = self.exit_image_tk
 
+            # The process described in the Written English if statement, is repeated through the rest of the subjects used. The only changes made will be to the variable names and titles of the png images
             if selected_subject == 'Visual English':
                 self.exit_button.config(state="disabled")
 
@@ -699,7 +743,7 @@ class subject_information:
                 self.delete_button.place(x=0, y=0, rely=0.13, relx=0.925, anchor=CENTER)
                 self.delete_button.image = self.exit_image_tk
 
-
+        # Defined function that holds the commands used for the Help button
         def help_button():
 
             def delete_popup():
@@ -710,9 +754,11 @@ class subject_information:
 
             self.exit_button.config(state="disabled")
 
+            # The popup frame that hosts the text for the help section
             self.popup_frame = Frame(parent, borderwidth=5, relief="solid", height=650, width=1300, bg="#792782")
-            self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
+            self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER) # Places the popup frame to the center of the screen
 
+            # The label works almost identical to the one used for the previous help page, the only difference being the text describing the particular page the user is currently on, being the Subject Information page
             self.help_text = Label(self.popup_frame,
                                    text="\nThe Subject Information page allows you to freely browse various level 3 subjects "
                                         "\nto understand what each subject has to offer. "
@@ -764,21 +810,22 @@ class subject_information:
                                   background="#792782", relief="flat")
         self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
-
+        # A list that hosts the subjects the user is able to find more about
         subject_choice = ['Written English', 'Visual English', 'Biology', 'Physics', 'Chemistry', 'Statistics']
         self.subject = ttk.Combobox(parent, width=55, height=150, font=("Helvitica", 35),
                                     values=subject_choice, state="readonly", justify="center")
-        self.subject.place(x=0, y=0, relheight=0.1, relx=0.5, rely=0.620, anchor=CENTER)
-        self.subject.set("Select A Subject")
+        self.subject.place(x=0, y=0, relheight=0.1, relx=0.5, rely=0.620, anchor=CENTER) # Due to the state of the combobox, the user is not able to type anything, making it more difficult to potentially cause any errors, while also allowing the default text to be tampered with.
+        self.subject.set("Select A Subject") # Sets default text to the combobox to help identify what the user must do to proceed
 
+        # Once the user has a selected a subject they are able to select the 'Search' button which will in turn activated the command: 'subject_selected' and find the if statement that applied to what they are looking for
         self.search_button = Button(parent, text="SEARCH", height=2, width=17, font=("Helvitica", 20), activebackground="#792782", command=subject_selected, state="normal")
         self.search_button.place(x=0, y=0, relx=0.5, rely=0.725, anchor=CENTER)
 
 
 
 
-app = Loginpage(root)
+app = Loginpage(root) # Allows the program to be displayed
 
-root.attributes("-fullscreen", True)
+root.attributes("-fullscreen", True) # Automatically makes the program take up the screen
 
-root.mainloop()
+root.mainloop() # Runs the program
