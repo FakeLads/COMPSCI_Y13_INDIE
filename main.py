@@ -18,8 +18,8 @@ id_list = []
 branch_list = []
 
 
-# The 'Loginpage' class holds all functions, methods and attributes related to the first opening page
-class Loginpage:
+# The 'login_page' class holds all functions, methods and attributes related to the first opening page
+class login_page:
     def __init__(self, parent):
 
         # The defined function that allows users to exit the program
@@ -62,7 +62,7 @@ class Loginpage:
             self.my_frame.destroy()
             self.button_go.destroy()
             self.button_exit.destroy()
-            Rankcalculator(root) # Displays the rank score calculator page while the code before destroys all the elements before
+            rank_calculator(root) # Displays the rank score calculator page while the code before destroys all the elements before
 
 
         self.bg = Image.open("1.png") # self.bg is equal to bright_home.png
@@ -88,7 +88,7 @@ class Loginpage:
 
 
 # The rank score calculator page
-class Rankcalculator:
+class rank_calculator:
     def __init__(self, parent):
 
         # The same defined function that is called when the user presses the exit button, displaying a exit popup
@@ -542,7 +542,7 @@ class subject_information:
             self.help_button.destroy()
             self.my_label.destroy()
             self.exit_button.destroy()
-            Rankcalculator(root)
+            rank_calculator(root)
 
         # Defined function for the subject selection combobox
         def subject_selected():
@@ -824,7 +824,7 @@ class subject_information:
 
 
 
-app = Loginpage(root) # Allows the program to be displayed
+app = login_page(root) # Allows the program to be displayed
 
 root.attributes("-fullscreen", True) # Automatically makes the program take up the screen
 
