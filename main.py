@@ -142,7 +142,6 @@ class rank_calculator:
             self.my_label.destroy()
             self.exit_button.destroy()
             self.outer_frame.destroy()
-            self.done_button.destroy()
             self.summary_button.destroy()
             self.subject_one.destroy()
             self.subject_two.destroy()
@@ -166,10 +165,10 @@ class rank_calculator:
             self.subject_5_excellence.destroy()
             subject_information(root) # Calls upon the subject information page to appear
 
-        # Defined function that checks if the user has all subjects and disables and enables certain widgets
-        def activate_button():
 
-            # Defined variables that check to see if the subject drop down menus have been selected
+        # Calculates the total rank score from total amounts of credits entered into the table
+        def calculate_summary():
+
             sub_1 = self.subject_one.get().strip()
             sub_2 = self.subject_two.get().strip()
             sub_3 = self.subject_three.get().strip()
@@ -179,7 +178,7 @@ class rank_calculator:
             # If the does not have subjects 1 to 5 one of five error messages will appear asking the user to repair their issues
             if not sub_1:
                 messagebox.showerror("ERROR", "You Are Missing Subject 1")
-                return # Reverts back to original state
+                return  # Reverts back to original state
 
             if not sub_2:
                 messagebox.showerror("ERROR", "You Are Missing Subject 2")
@@ -197,9 +196,28 @@ class rank_calculator:
                 messagebox.showerror("ERROR", "You Are Missing Subject 5")
                 return
 
-            # If the user does enter in all 5 subjects then the summary button will become available and all drop down menus will become unavailable
             else:
-                self.summary_button.config(state="normal")
+                # Splits each subject into rows
+                subject_rows = [
+                    (self.subject_1_excellence, self.subject_1_merit, self.subject_1_achieved),
+                    (self.subject_2_excellence, self.subject_2_merit, self.subject_2_achieved),
+                    (self.subject_3_excellence, self.subject_3_merit, self.subject_3_achieved),
+                    (self.subject_4_excellence, self.subject_4_merit, self.subject_4_achieved),
+                    (self.subject_5_excellence, self.subject_5_merit, self.subject_5_achieved),
+
+                ]
+
+                # Sets the user's starting score to 0, from where it can be increased
+                total_score = 0
+
+                # Cycles through the list of subject rows
+                for exc_cb, mer_cb, ach_cb in subject_rows:
+                    exc_val = int(exc_cb.get() if exc_cb.get() else 0) # Reads the selected values from the dropdown menus. If the widget is empty, the system will return value as 0 in order to prevent the program from crashing
+                    mer_val = int(mer_cb.get() if mer_cb.get() else 0) # The int() converts the string from the dropdown menu into a mathematical value to it can be calculated
+                    ach_val = int(ach_cb.get() if ach_cb.get() else 0)
+
+                    # Calculates the total amount of points earned according to how much a credit is multiplied for NCEA, and adds that to the total score
+                    total_score += (exc_val * 4) + (mer_val * 3) + (ach_val * 2)
 
                 self.subject_one.config(state="disabled")
                 self.subject_two.config(state="disabled")
@@ -231,30 +249,7 @@ class rank_calculator:
                 self.subject_5_merit.config(state="disabled")
                 self.subject_5_achieved.config(state="disabled")
 
-        # Calculates the total rank score from total amounts of credits entered into the table
-        def calculate_summary():
-
-            # Splits each subject into rows
-            subject_rows = [
-                (self.subject_1_excellence, self.subject_1_merit, self.subject_1_achieved),
-                (self.subject_2_excellence, self.subject_2_merit, self.subject_2_achieved),
-                (self.subject_3_excellence, self.subject_3_merit, self.subject_3_achieved),
-                (self.subject_4_excellence, self.subject_4_merit, self.subject_4_achieved),
-                (self.subject_5_excellence, self.subject_5_merit, self.subject_5_achieved),
-
-            ]
-
-            # Sets the user's starting score to 0, from where it can be increased
-            total_score = 0
-
-            # Cycles through the list of subject rows
-            for exc_cb, mer_cb, ach_cb in subject_rows:
-                exc_val = int(exc_cb.get() if exc_cb.get() else 0) # Reads the selected values from the dropdown menus. If the widget is empty, the system will return value as 0 in order to prevent the program from crashing
-                mer_val = int(mer_cb.get() if mer_cb.get() else 0) # The int() converts the string from the dropdown menu into a mathematical value to it can be calculated
-                ach_val = int(ach_cb.get() if ach_cb.get() else 0)
-
-                # Calculates the total amount of points earned according to how much a credit is multiplied for NCEA, and adds that to the total score
-                total_score += (exc_val * 4) + (mer_val * 3) + (ach_val * 2)
+                self.summary_button.config(state="disabled")
 
             # Deletes the summary popup
             def delete_summary():
@@ -262,7 +257,7 @@ class rank_calculator:
                 self.summary_label.destroy()
                 self.delete_button.destroy()
 
-                self.summary_button.config(state="disabled")
+                self.summary_button.config(state="normal")
 
                 self.subject_one.config(state="readonly")
                 self.subject_two.config(state="readonly")
@@ -344,8 +339,9 @@ class rank_calculator:
                                                           "\n\nTo operate the calculator, please select all five subjects you have taken throughout the year"
                                                           "\nbefore entering all achieved, merit and excellence credits."
                                                           "\nYou must enter in each subject, even if you have not acquired any credits throughout the year."
-                                                          "\n\nOnce you have entered in all necessary values, select the “DONE” button. "
-                                                          "\nThis will activate the ‘SUMMARY’, permitting you to see your total rank score without any interruptions."
+                                                          "\n\nOnce you have entered in all necessary values, select the 'SUMMARY' button. "
+                                                          "\nIf you have entered in all five subjects, you will be greeted with your total rank score."
+                                                          "\nYou will not receive your score if you do not enter in all five of your subjects."
                                                           "\n\nOnce you finished, select the ‘X’ button where you will be taken back to the original screen.", font=("Helvetica", 16), bg="#792782", fg="white",
                                    bd=0, highlightthickness=0) # The \n is used to create a new line that allows the text to move to the next space as a means to not go beyond the grid
             self.help_text.place(relx=0.5, rely=0.4, anchor=CENTER)
@@ -398,16 +394,11 @@ class rank_calculator:
         self.outer_frame.pack_propagate(False)
         self.outer_frame.place(x=0, y=5, relx=0.5, rely=0.96, anchor='s')
 
-        # The Done button is used to confirm the users credit values entered into the table
-        self.done_button = Button(self.outer_frame, text="DONE", height=4, width=20, font=("Helvetica", 20),
-                                  activebackground="#792782", command=activate_button)
-        self.done_button.place(x=10, y=-10, relx=0, rely=0.5, anchor="w")
-
         # Made available after the user selects the Done button. Once selected the user will be shown their rank score
         self.summary_button = Button(self.outer_frame, text="SUMMARY", height=4, width=20, font=("Helvetica", 20),
                                      activebackground="#792782", command=calculate_summary)
-        self.summary_button.place(x=10, y=-10, relx=1.0, rely=0.5, anchor="e")
-        self.summary_button.config(state='disabled') # Button begins disabled
+        self.summary_button.place(y=-10, relx=0.5, rely=0.5, anchor=CENTER)
+
 
 
         #Subject drop-down menus list:
@@ -773,7 +764,7 @@ class subject_information:
             self.help_text = Label(self.popup_frame,
                                    text="\nThe Subject Information page allows you to freely browse various level 3 subjects "
                                         "\nto understand what each subject has to offer. "
-                                        "\n\nSimply by entering the subject of your choice and selecting the ‘ENTER’ button, "
+                                        "\n\nSimply by entering the subject of your choice and selecting the ‘SEARCH’ button, "
                                         "\nyou are given a brief description of the subject, including what it might offer to you as a student. "
                                         "\n\nTo exit the subject, simply select the ‘X’ button and you will be taken back to the original page, "
                                         "\nfree to choose a new subject if wanted.", font=("Helvetica", 18), bg="#792782", fg="white",
