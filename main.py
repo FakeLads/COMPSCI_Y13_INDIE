@@ -64,6 +64,13 @@ class login_page:
             self.button_exit.destroy()
             rank_calculator(root) # Displays the rank score calculator page while the code before destroys all the elements before
 
+        def subject_button():
+            self.my_label.destroy()
+            self.my_frame.destroy()
+            self.button_go.destroy()
+            self.button_exit.destroy()
+            subject_information(root)  # Displays the rank score calculator page while the code before destroys all the elements before
+
 
         self.bg = Image.open("1.png") # self.bg is equal to bright_home.png
         self.resized_image = self.bg.resize((1920, 1080), Image.LANCZOS) # self.resized_image means if this variable is called the image must resize to the following measurements and display at a high quality
@@ -77,9 +84,13 @@ class login_page:
         self.my_frame.place(x=0, y=0, relx=0.5, rely=0.6, anchor=CENTER)
 
         # Button that takes user to rank score calculator page
-        self.button_go = Button(self.my_frame, text="START HERE", height=2, width=16, font=("Helvetica", 20),
+        self.button_go = Button(self.my_frame, text="Calculator", height=2, width=20, font=("Helvetica", 20),
                                 activebackground="#792782", command=go_button)
-        self.button_go.grid(row=2, column=2, pady=20, columnspan=2)
+        self.button_go.grid(row=2, column=1, pady=20, padx=20, columnspan=1)
+
+        self.subject_button = Button(self.my_frame, text="Subject Information", height=2, width=20, font=("Helvetica", 20),
+                                     activebackground="#792782", command=subject_button)
+        self.subject_button.grid(row=2, column=3, pady=20, padx=20, columnspan=1)
 
         # Exit button that allows the user to leave if they wish
         self.button_exit = Button(parent, text="EXIT", height=2, width=15, font=("Helvetica", 20),
