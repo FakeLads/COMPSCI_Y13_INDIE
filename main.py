@@ -13,10 +13,6 @@ root = Tk()
 root.title("Take Credit") #Title of the program window
 root.geometry("1920x1080") # Sets the width and height of the window
 
-id_list = []
-
-branch_list = []
-
 
 # The 'login_page' class holds all functions, methods and attributes related to the first opening page
 class login_page:
@@ -33,15 +29,18 @@ class login_page:
             self.popup_frame.place(x=0, y=0, relx=0.5, rely=0.5, anchor=CENTER)
 
             # Displays the text asking the user
-            self.text_label = Label(self.popup_frame, text="PLEASE CONFIRM YOUR EXIT", font=("Helvetica", 50), bg="Grey", fg="White")
+            self.text_label = Label(self.popup_frame, text="PLEASE CONFIRM YOUR EXIT", font=("Helvetica", 50),
+                                    bg="Grey",fg="White")
             self.text_label.place(relx=0.5, rely=0.25, anchor=CENTER)
 
             # The Yes Button. If the user wants to leave they press this
-            self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvetica", 20), bg="Dark Green", fg="White", command=proceed_destroy)
+            self.yes_button = Button(self.popup_frame, height=5, width=20, text="YES", font=("Helvetica", 20),
+                                     bg="Dark Green", fg="White", command=proceed_destroy)
             self.yes_button.place(x=0, y=0, relx=0.1, rely=0.5)
 
             # The No Button. If the user does not wish to leave, they press this and return to the program
-            self.no_button = Button(self.popup_frame, height=5, width=20, text="NO", font=("Helvetica", 20), bg="Red", fg="White", command=cancel_popup)
+            self.no_button = Button(self.popup_frame, height=5, width=20, text="NO", font=("Helvetica", 20),
+                                    bg="Red", fg="White", command=cancel_popup)
             self.no_button.place(x=0, y=0, relx=0.65, rely=0.5)
 
         # Stops the whole program/destroys it
@@ -88,8 +87,8 @@ class login_page:
                                 activebackground="#792782", command=go_button)
         self.button_go.grid(row=2, column=1, pady=20, padx=20, columnspan=1)
 
-        self.subject_button = Button(self.my_frame, text="Subject Information", height=2, width=20, font=("Helvetica", 20),
-                                     activebackground="#792782", command=subject_button)
+        self.subject_button = Button(self.my_frame, text="Subject Information", height=2, width=20,
+                                     font=("Helvetica", 20), activebackground="#792782", command=subject_button)
         self.subject_button.grid(row=2, column=3, pady=20, padx=20, columnspan=1)
 
         # Exit button that allows the user to leave if they wish
@@ -304,7 +303,8 @@ class rank_calculator:
             self.summary_label.place(relx=0.5, rely=0.35, anchor=CENTER)
 
             # The label will print a large value of what the user got for their total rank score
-            self.value_label = Label(self.summary_frame, text=f"{total_score}", font=("Helvetica", 80, "bold"), bg="Grey", fg="White")
+            self.value_label = Label(self.summary_frame, text=f"{total_score}", font=("Helvetica", 80, "bold"),
+                                     bg="Grey", fg="White")
             self.value_label.place(relx=0.5, rely=0.6, anchor=CENTER)
 
             exit_image = Image.open("red_x.png")  # The exit_image variable equates to the red x png
@@ -313,7 +313,8 @@ class rank_calculator:
 
             # A button that hosts the red X image
             self.delete_button = Button(self.summary_frame,
-                                        command=delete_summary, image=self.exit_image_tk, cursor="hand2", background="Grey", relief="flat")
+                                        command=delete_summary, image=self.exit_image_tk, cursor="hand2",
+                                        background="Grey", relief="flat")
             self.delete_button.place(x=0, y=0, rely=0.13, relx=0.93, anchor=CENTER)
             self.delete_button.image = self.exit_image_tk
 
@@ -385,7 +386,8 @@ class rank_calculator:
         help_image = help_image.resize((140, 140), Image.LANCZOS)
         self.help_image_tk = ImageTk.PhotoImage(help_image)
 
-        self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2", background="#792782", relief="flat")
+        self.help_button = Button(parent, image=self.help_image_tk, command=help_button, cursor="hand2",
+                                  background="#792782", relief="flat")
         self.help_button.place(x=0, y=0, relx=0.940, rely=0.11, anchor=CENTER)
 
 
@@ -409,16 +411,20 @@ class rank_calculator:
         self.subject_one.place(x=0, y=0, rely=0.440, relx=0.335, anchor=CENTER)
 
         # Values of the comboboxes equal to the subjects ist above
-        self.subject_two = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects, state='readonly', justify="center")
+        self.subject_two = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects,
+                                        state='readonly', justify="center")
         self.subject_two.place(x=0, y=0, rely=0.505, relx=0.335, anchor=CENTER)
 
-        self.subject_three = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects, state='readonly', justify="center")
+        self.subject_three = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects,
+                                          state='readonly', justify="center")
         self.subject_three.place(x=0, y=0, rely=0.565, relx=0.335, anchor=CENTER)
 
-        self.subject_four = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects, state='readonly', justify="center")
+        self.subject_four = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects,
+                                         state='readonly', justify="center")
         self.subject_four.place(x=0, y=0, rely=0.625, relx=0.335, anchor=CENTER)
 
-        self.subject_five = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects, state='readonly', justify="center")
+        self.subject_five = ttk.Combobox(parent, font=("Helvetica", 20), values=subjects,
+                                         state='readonly', justify="center")
         self.subject_five.place(x=0, y=0, rely=0.690, relx=0.335, anchor=CENTER)
 
 
@@ -820,7 +826,8 @@ class subject_information:
         self.subject.set("Select A Subject") # Sets default text to the combobox to help identify what the user must do to proceed
 
         # Once the user has a selected a subject they are able to select the 'Search' button which will in turn activated the command: 'subject_selected' and find the if statement that applied to what they are looking for
-        self.search_button = Button(parent, text="SEARCH", height=2, width=17, font=("Helvetica", 20), activebackground="#792782", command=subject_selected, state="normal")
+        self.search_button = Button(parent, text="SEARCH", height=2, width=17, font=("Helvetica", 20),
+                                    activebackground="#792782", command=subject_selected, state="normal")
         self.search_button.place(x=0, y=0, relx=0.5, rely=0.725, anchor=CENTER)
 
 
