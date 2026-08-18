@@ -14,6 +14,7 @@ root.title("Take Credit") #Title of the program window
 root.geometry("1920x1080") # Sets the width and height of the window
 
 
+
 # The 'login_page' class holds all functions, methods and attributes related to the first opening page
 class login_page:
     def __init__(self, parent):
